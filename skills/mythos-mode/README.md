@@ -4,9 +4,7 @@ Checks work against seven rules for evidence, scope, verification, and concise r
 
 ## When to use it
 
-You want an agent to check its assumptions and show what its verification covered.
-
-Before reporting a fix, identify the original failure, run the relevant check, and show that it would fail without the fix.
+When you want to go beast mode on something.
 
 ## What's included
 

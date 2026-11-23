@@ -8,7 +8,7 @@ Pick a skill for the job in front of you, from investigating a flaky test to che
 
 | Skill | What it does | When to use it |
 | --- | --- | --- |
-| [`mythos-mode`](skills/mythos-mode/README.md) | Checks work against seven rules for evidence, scope, verification, and concise reporting. | You want an agent to check its assumptions and show what its verification covered. |
+| [`mythos-mode`](skills/mythos-mode/README.md) | Checks work against seven rules for evidence, scope, verification, and concise reporting. | When you want to go beast mode on something. |
 | [`prove-it`](skills/prove-it/README.md) | Tests fixes against a baseline and checks whether tests detect a deliberately introduced fault. | You need evidence that a retry fix works or that a refactor preserves behaviour. |
 | [`break-it`](skills/break-it/README.md) | Uses code mutations and edge-case inputs to find defects that a test suite or review missed. | You want to stress-test a code change, command-line tool, or implementation plan. |
 | [`ship-check`](skills/ship-check/README.md) | Audits a Git diff for credential patterns, debug code, broken Python callers, and failed checks. | You want a pre-commit or pre-merge check of the code that will actually ship. |
