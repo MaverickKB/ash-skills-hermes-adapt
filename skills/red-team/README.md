@@ -1,5 +1,7 @@
 # Red team
 
+> **Use this skill only on hardware you control and are authorised to test.** You are responsible for how you use it and for the consequences of your testing.
+
 Validates written security-review scope and records approvals and evidence in a hash-chained log.
 
 ## When to use it
