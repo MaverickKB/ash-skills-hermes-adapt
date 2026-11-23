@@ -2,6 +2,8 @@
 
 Get a repro you can run, a result you can verify, and a clear account of what still needs checking.
 
+This may or may not have been created by Mythos to help smaller models think like Mythos.
+
 [Agent instructions](SKILL.md) · [All skills](../../README.md#skill-directory)
 
 ## When to use it

@@ -2,7 +2,7 @@
 
 ![A red laser traces the profile of a black basalt lion.](assets/mythos-mode.webp)
 
-I want my agent to show me the bug it reproduced, the test that caught it, and the runs behind its speedup claim. These 23 skills give you a way to ask for that work.
+I want my agent to show me the bug it reproduced, the test that caught it, and the runs behind its speedup claim. These 24 skills give you a way to ask for that work.
 
 [Install](#install) · [Try Mythos Mode](#see-mythos-mode-in-action) · [Pick a workflow](#pick-a-workflow) · [Browse the skills](#skill-directory) · [Supported agents](#supported-agents)
 
@@ -38,6 +38,7 @@ The gate reports `GATE: FAIL (3 problems)`. It asks which checks ran, what remai
 
 | What you're facing | Skills to use in order | What you get |
 | --- | --- | --- |
+| "Which stack should I build this on?" | [Research then build](skills/research-then-build/README.md) | Live sources, upstream code review, and a trial against your requirements. |
 | "It only fails on CI." | [Diagnosing bugs](skills/diagnosing-bugs/README.md) &rarr; [Prove it](skills/prove-it/README.md) | A reproducer and a test that catches the original failure. |
 | "This change touches a lot of callers." | [Blast radius](skills/blast-radius/README.md) &rarr; [Ship check](skills/ship-check/README.md) | A map of what depends on your changes and a verdict on the staged snapshot. |
 | "Decode is faster. Can we ship it?" | [Output parity](skills/tensorfold/output-parity/README.md) &rarr; [Fair bench](skills/fair-bench/README.md) &rarr; [Speedup referee](skills/tensorfold/speedup-referee/README.md) | A parity verdict, repeat timings, and an independent review of the speedup claim. |
@@ -61,6 +62,7 @@ Open a guide for a copyable prompt, bundled tools, and related skills.
 
 | Skill | What it does | When to use it |
 | --- | --- | --- |
+| [`research-then-build`](skills/research-then-build/README.md) | Check live sources, inspect upstream code, and run the same acceptance tests on two options. | You need to pick a stack, dependency, or major upgrade. |
 | [`repo-map`](skills/repo-map/README.md) | Find entry points, heavily imported files, and test commands. | You just opened an unfamiliar codebase. |
 | [`spec-check`](skills/spec-check/README.md) | Turn vague requirements into checks and flag missing failure paths. | A feature or design needs testable acceptance criteria. |
 | [`blast-radius`](skills/blast-radius/README.md) | Trace callers, aliases, re-exports, and affected tests. | You're removing or renaming a shared symbol. |
