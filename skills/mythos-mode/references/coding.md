@@ -15,6 +15,7 @@ Use this playbook when you are writing, changing, debugging, or reviewing code.
 9. Performance
 10. Reviewing someone else's code
 11. Explaining code
+12. References by task
 
 ## Before you edit
 
@@ -46,8 +47,10 @@ Four traps catch most people. They fix the first odd thing they see, when it is 
 - Search for an existing helper before you write a new one.
 - Build for the stated need. Options, layers, and config for needs nobody has raised are cost with no buyer.
 - Name things for what they are, using the vocabulary the code already uses.
-- Write a comment where the reason for the code isn't obvious. Don't narrate your change in comments.
+- Give each module one clear responsibility and each routine one job. Keep interfaces small and use the language's strongest practical types for their contracts.
+- Use a brief comment when the reason for the code isn't obvious. Follow the repository's documentation conventions and preserve licence notices and tool directives.
 - Handle an error where something useful can be done about it. Otherwise let it travel upward with context. An empty catch block hides the next bug.
+- Keep retries bounded and safe to repeat. Account for cancellation, timeouts, partial failure, and concurrent writes where they affect callers.
 - Validate at the edges, where input arrives from users, the network, or files. Trust calls inside the codebase.
 - Keep a behavior change and a refactor in separate changes, so each can be reviewed and reverted alone.
 - Delete what you replace. Commented-out code and unused functions mislead the next reader.
@@ -58,6 +61,7 @@ Four traps catch most people. They fix the first odd thing they see, when it is 
 - Prefer what the project already uses.
 - Before adding a package, confirm that it exists under that exact name in the registry and is the one you mean. Models produce plausible package names that don't exist, and attackers register those names.
 - Check the API against the installed version's docs or source. Your memory may be of a different version.
+- Check official support and compatibility before choosing or upgrading a version. When the choice matters, record the version, date checked, source, and compatibility reason.
 - Use the project's package manager and keep its lockfile consistent.
 - Say in your report that you added a dependency.
 
@@ -66,8 +70,8 @@ Four traps catch most people. They fix the first odd thing they see, when it is 
 - For a bug, add a test that fails before the fix and passes after it.
 - For a feature, test the main path, the boundaries, and the failure path.
 - Follow the existing test style and location.
-- Run the specific test first, then the whole suite.
-- Confirm that a new test can fail. A test that passes with or without your change tests nothing.
+- Run the specific test first, then the relevant suite, formatting, lint, type, and build checks.
+- For a fix, run the same test against the old and new versions. For a behaviour-preserving refactor, expect both versions to pass, then check that a deliberately faulty copy is rejected.
 - Never weaken, skip, or delete a test to get a green run, and never hard-code the expected output. If the test itself is wrong, say so, say why, and change it openly.
 - If a failure looks flaky, rerun once to check, then report it as flaky with the evidence. Retrying until green and staying quiet hides a real problem.
 - If you can't run the tests, say so.
@@ -124,3 +128,14 @@ Read the full diff before you report.
 ## Explaining code
 
 Say what it does in one sentence, then how the pieces fit, then the surprises. Point to path and line. Match the level of the person who asked.
+
+## References by task
+
+| Task | Read |
+| --- | --- |
+| Choose module boundaries or split an overloaded file | [Architecture and module boundaries](architecture.md) |
+| Choose or upgrade a runtime, dependency, or API | [Live research and version selection](research-and-versions.md) |
+| Work in a TypeScript or Node.js project | [TypeScript and Node.js defaults](typescript-node.md) |
+| Review a trust boundary, retry path, or measured optimisation | [Security and performance review](security-performance.md) |
+| Decide which checks prove an implementation or review is complete | [Verification and review](verification.md) |
+| Profile an inference engine end to end | [TensorFold performance playbook](inference-performance.md) |

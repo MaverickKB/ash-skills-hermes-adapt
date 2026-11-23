@@ -20,4 +20,4 @@ Use the [checkpoint inspector](scripts/inspect_checkpoint.py) for metadata and t
 
 ## Pair it with
 
-[Kernel contract](../../../skills/tensorfold/kernel-contract/README.md) · [Output parity](../../../skills/tensorfold/output-parity/README.md)
+[Kernel contract](../kernel-contract/README.md) · [Output parity](../output-parity/README.md) · [TensorFold performance playbook](../README.md)

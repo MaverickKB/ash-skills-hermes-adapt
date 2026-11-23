@@ -49,7 +49,7 @@ Read the table from the top. If the first row fits, stop there. The rows below i
 
 ### Specialist skills (when installed)
 
-Orient: `repo-map` | Plan/RFC: `spec-check` | Pre-edit impact: `blast-radius` | Debug: `diagnosing-bugs` | Prove: `prove-it` | Attack: `break-it` | Pre-PR: `ship-check` | Migrations: `migrate-safe` | Inference engines: `model-bringup`, `kernel-contract`, `one-stream-lanes`, `prefill-and-kv`, `serving-concurrency`, `inference-speed-hunt`, `output-parity`, `fair-bench`, `speedup-referee` | Prose/Handover: `slopchop`, `handover`.
+Orient: `repo-map` | Plan/RFC: `spec-check` | Pre-edit impact: `blast-radius` | Debug: `diagnosing-bugs` | Prove: `prove-it` | Attack: `break-it` | Pre-PR: `ship-check` | Migrations: `migrate-safe` | Inference engines: open Mythos Mode's `references/inference-performance.md` for profiling and specialist selection | Review a speed claim: `speedup-referee` | Prose/Handover: `slopchop`, `handover`.
 
 ### Never
 

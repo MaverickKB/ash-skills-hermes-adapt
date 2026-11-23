@@ -20,4 +20,4 @@ The [spec linter](scripts/spec_lint.py) flags vague language, missing failure pa
 
 ## Pair it with
 
-[Engineering excellence](../../skills/engineering-excellence/README.md) · [Prove it](../../skills/prove-it/README.md)
+[Mythos coding playbook](../mythos-mode/references/coding.md) · [Prove it](../prove-it/README.md)

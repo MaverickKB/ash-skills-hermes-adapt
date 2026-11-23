@@ -2,7 +2,7 @@
 
 ![A red laser traces the profile of a black basalt lion.](assets/mythos-mode.webp)
 
-I want my agent to show me the bug it reproduced, the test that caught it, and the runs behind its speedup claim. These 24 skills give you a way to ask for that work.
+I want my agent to show me the bug it reproduced, the test that caught it, and the runs behind its speedup claim. These 22 skills give you a way to ask for that work.
 
 [Install](#install) · [Try Mythos Mode](#see-mythos-mode-in-action) · [Pick a workflow](#pick-a-workflow) · [Browse the skills](#skill-directory) · [Supported agents](#supported-agents)
 
@@ -63,17 +63,19 @@ Open a guide for a copyable prompt, bundled tools, and related skills.
 | --- | --- | --- |
 | [`repo-map`](skills/repo-map/README.md) | Find entry points, heavily imported files, and test commands. | You just opened an unfamiliar codebase. |
 | [`spec-check`](skills/spec-check/README.md) | Turn vague requirements into checks and flag missing failure paths. | A feature or design needs testable acceptance criteria. |
-| [`engineering-excellence`](skills/engineering-excellence/README.md) | Review interfaces, modularity, and failure paths before making a change. | You're building or refactoring production code. |
 | [`blast-radius`](skills/blast-radius/README.md) | Trace callers, aliases, re-exports, and affected tests. | You're removing or renaming a shared symbol. |
 | [`diagnosing-bugs`](skills/diagnosing-bugs/README.md) | Reproduce a failure, shrink its input, and bisect the regression. | A test flakes or a bug only appears on some builds. |
 | [`migrate-safe`](skills/migrate-safe/README.md) | Lint SQL and verify schema and row data through a SQLite rollback. | You're changing a schema or backfilling data. |
 
+For production design, TypeScript, and dependency choices, use the [Mythos coding playbook](skills/mythos-mode/references/coding.md).
+
 ### TensorFold and inference
+
+If you need to find where a served request spends its time, start with the [TensorFold performance playbook](skills/tensorfold/README.md). Use the trace to choose which specialist to load.
 
 | Skill | What it does | When to use it |
 | --- | --- | --- |
 | [`model-bringup`](skills/tensorfold/model-bringup/README.md) | Inspect checkpoint shards and estimate KV-cache memory. | You're adding a new model or checkpoint format. |
-| [`inference-speed-hunt`](skills/tensorfold/inference-speed-hunt/README.md) | Break down served request time and measure a targeted change. | You need to find where inference slows down. |
 | [`kernel-contract`](skills/tensorfold/kernel-contract/README.md) | Compare kernel output bit for bit or within a numerical tolerance. | You're replacing, fusing, or tuning a kernel. |
 | [`one-stream-lanes`](skills/tensorfold/one-stream-lanes/README.md) | Compare single-stream throughput and draft widths. | One request leaves capacity unused. |
 | [`output-parity`](skills/tensorfold/output-parity/README.md) | Compare responses and token bytes across builds. | A cache, kernel, or decoding change should preserve output. |
@@ -82,13 +84,16 @@ Open a guide for a copyable prompt, bundled tools, and related skills.
 | [`speedup-referee`](skills/tensorfold/speedup-referee/README.md) | Review workload, baseline noise, and output parity behind a claimed gain. | You're deciding whether to merge or publish a speedup. |
 | [`shrink-model`](skills/shrink-model/README.md) | Plan structural pruning and verify a smaller checkpoint. | You need to hit a total or active parameter budget. |
 
-### Writing and maintenance
+### Writing and handover
 
 | Skill | What it does | When to use it |
 | --- | --- | --- |
 | [`handover`](skills/handover/README.md) | Record checked work and verify stale file and commit references. | You need another session to pick up the work. |
-| [`skill-check`](skills/skill-check/README.md) | Check skill folders, package them, and compare behaviour on held-out tasks. | You're writing or updating a skill. |
 | [`slopchop`](skills/slopchop/README.md) | Cut filler, remove em dashes, and write in the speaker's voice. | You want a draft to sound like you. |
+
+### Optional maintainer tool
+
+Use [`skill-check`](skills/skill-check/README.md) when you write or publish a skill. It validates folders, builds packages, and compares agent behaviour on held-out tasks.
 
 ## Supported Agents
 

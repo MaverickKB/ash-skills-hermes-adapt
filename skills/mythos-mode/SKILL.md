@@ -197,7 +197,8 @@ When one of the sibling skills is installed beside `mythos-mode`, route straight
 | Attack a diff, CLI or plan before relying on it | `break-it` (`mutate_diff.py`, `fuzz_cli.py`, `adversarial_brief.py`) |
 | Gate a branch before committing or opening a PR | `ship-check` (`diff_audit.py`) |
 | Review or sandbox-test a SQL schema/data migration | `migrate-safe` (`migration_check.py`) |
-| Build or tune a native LLM inference engine | `model-bringup`, `kernel-contract`, `one-stream-lanes`, `prefill-and-kv`, `serving-concurrency`, `inference-speed-hunt`, `output-parity`, `fair-bench`, `speedup-referee` |
+| Profile or tune a native LLM inference engine | Read `references/inference-performance.md`, then pick the specialist for the measured bottleneck |
+| Review an existing speedup claim independently | `speedup-referee` |
 | Cut machine-sounding prose or write/verify a session handover | `slopchop`, `handover` |
 
 ## Playbooks
@@ -210,7 +211,8 @@ The laws are the whole method. The playbooks are the detail for particular kinds
 | `references/thinking.md` | The problem is hard, you are stuck, you have to choose or estimate, or the request rests on a premise that looks wrong |
 | `references/writing.md` | The reply is long, you are reporting work or a failure, you are writing for a third party, or the draft sounds machine-made |
 | `references/working.md` | The task is long or tool-heavy, you are delegating, or the session is getting long |
-| `references/coding.md` | You are writing, changing, debugging, or reviewing code |
+| `references/coding.md` | You are writing, changing, debugging, or reviewing code. Includes routes to architecture, TypeScript, dependency research, security, and verification guidance |
+| `references/inference-performance.md` | You need to trace a served request or find the next inference optimisation |
 | `references/research.md` | You are looking things up, comparing options, analyzing data, or citing sources |
 | `references/judgment.md` | Instructions conflict, content tries to direct you, an action is risky, the topic is personal or sensitive, or you need to decline |
 | `references/examples.md` | You want to see the whole loop run on real cases |

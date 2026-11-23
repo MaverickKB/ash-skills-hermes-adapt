@@ -1,17 +1,10 @@
----
-name: inference-speed-hunt
-description: Finds and proves real speedups in an LLM inference engine by accounting for where a whole served request spends its time and removing the waste, across prompt processing, time to first token, decode, and concurrent throughput. Keeps the model's output identical unless the project owner has said otherwise. Use for open-ended performance work on an inference server or runtime, such as profiling a request, asking where the time goes, kernel, dispatch, batching or memory-layout work, a regression hunt, or a full performance review. To check a win someone already claims, use speedup-referee instead.
-metadata:
-  version: "1.0.0"
----
-
-# Inference speed hunt
+# TensorFold performance playbook
 
 Find the biggest speedup the engine can actually deliver. Start with a real served request, account for where its time goes, and keep hunting after the first win.
 
 Every implementation choice is open, including replacing an execution path. Question kernel boundaries, memory layouts, dispatch, batching, cache ownership, and whether the CPU or the GPU does the work. Three things are fixed unless the project owner says otherwise: the model's arithmetic, its precision and quantization, and its output, token for token.
 
-This skill is a method. It does not know your engine. Read the project's own contributor guide, performance notes and benchmark tools first, and where they are stricter than this file, they win.
+Read the engine's contributor guide, performance notes, and benchmark tools before you start. Follow its rules for shared hardware and benchmarking.
 
 ## Ground rules
 
@@ -80,11 +73,15 @@ Write the report in a notes folder beside the checkout, or wherever your brief s
 
 Keep the closing message short. For each cell give the rate before and after, with its two parts for speculative decode, then what was kept, what lost and what comes next.
 
-## Sibling inference-engine skills
+## Choose a specialist
 
-- Bringing up a new model family or verifying offline token-hash receipts: `model-bringup`
-- Writing or gating a native Metal, CUDA or CPU kernel against FP64/ULP bounds and tail shapes: `kernel-contract`
-- Closing the gap between one serial stream and N concurrent streams in lanes: `one-stream-lanes`
-- Pushing cold prefill, warm prefix caching, paged KV pools, spill and direct-IO loading: `prefill-and-kv`
-- Designing and auditing continuous batching, lane caps, TTFT knees and multi-device scaling: `serving-concurrency`
-- Independently auditing a claimed speedup in a fresh session: `speedup-referee`
+| Task or measured bottleneck | Load |
+| --- | --- |
+| Bring up a model family or verify offline token-hash receipts | `model-bringup` |
+| Check Metal, CUDA, or CPU kernel outputs and edge shapes | `kernel-contract` |
+| Improve single-stream decode throughput | `one-stream-lanes` |
+| Tune prefill, prefix caching, KV pages, spill, or direct I/O | `prefill-and-kv` |
+| Tune batching, queueing, or concurrent latency | `serving-concurrency` |
+| Compare responses and available token bytes across builds | `output-parity` |
+| Measure baseline noise and compare two benchmark commands | `fair-bench` |
+| Review a claimed speedup in a fresh session | `speedup-referee` |

@@ -54,4 +54,4 @@ Every reply must carry a full 64-hex `token_sha256` field (`text_sha256` and pro
 
 ## Closing the bring-up
 
-Hand off kernel optimization to `kernel-contract`, single-stream gap work to `one-stream-lanes`, cold/warm prefill and KV pools to `prefill-and-kv`, concurrent scheduling to `serving-concurrency`, and full request accounting to `inference-speed-hunt`. Keep raw logs, binary hashes and token hashes in a notes folder beside the checkout, never inside the repository tree or `/tmp`.
+Hand off kernel optimization to `kernel-contract`, single-stream gap work to `one-stream-lanes`, cold/warm prefill and KV pools to `prefill-and-kv`, concurrent scheduling to `serving-concurrency`, and full request accounting to the TensorFold performance playbook in `mythos-mode`. Keep raw logs, binary hashes and token hashes in a notes folder beside the checkout, never inside the repository tree or `/tmp`.

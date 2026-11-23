@@ -20,4 +20,4 @@ The [benchmark runner](scripts/ab_bench.py) alternates the commands and reports 
 
 ## Pair it with
 
-[Speedup referee](../../skills/tensorfold/speedup-referee/README.md) · [Inference speed hunt](../../skills/tensorfold/inference-speed-hunt/README.md)
+[Speedup referee](../tensorfold/speedup-referee/README.md) · [TensorFold performance playbook](../tensorfold/README.md)

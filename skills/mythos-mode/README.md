@@ -16,7 +16,9 @@ Use mythos-mode. This test fails on CI twice a week. Reproduce it, narrow down t
 
 ## What you get
 
-Use the playbooks for coding, research, writing, and judgement. Run the [reply gate](scripts/gate.py) to catch unsupported claims and missing verification details.
+Use the playbooks for coding, research, writing, and judgement. The [coding playbook](references/coding.md) covers production changes and links to architecture, TypeScript, dependency research, security, and verification. Use the [TensorFold performance playbook](references/inference-performance.md) when you need to trace a served request and choose the next optimisation.
+
+Run the [reply gate](scripts/gate.py) to catch unsupported claims and missing verification details.
 
 ## Pair it with
 
