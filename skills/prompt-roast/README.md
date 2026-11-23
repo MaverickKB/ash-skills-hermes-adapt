@@ -28,6 +28,18 @@ Improve [dashboard screen] so I can [complete a specific task]. Keep [what must 
 
 Fill the brackets and send the rewrite. You get one jab, then the better prompt.
 
+## Try a contradiction
+
+```text
+Roast my prompt: Give me exactly five bullet points with a maximum of two bullets.
+```
+
+> Come on, fam, five bullets only fit under a two-bullet cap if three of them are fucking invisible.
+
+```text
+Give me [exactly five bullet points or at most two bullet points] about [topic].
+```
+
 ## Pair it with
 
 [Spec check](../spec-check/README.md) · [Slopchop](../slopchop/README.md)
