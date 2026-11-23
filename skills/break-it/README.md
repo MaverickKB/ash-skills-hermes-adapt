@@ -20,4 +20,4 @@ Use the [local CLI fuzzer](scripts/fuzz_cli.py) for input edges or the [diff mut
 
 ## Pair it with
 
-[Prove it](../../skills/prove-it/README.md) · [Diagnosing bugs](../../skills/diagnosing-bugs/README.md)
+[Prove it](../prove-it/README.md) · [Diagnosing bugs](../diagnosing-bugs/README.md)

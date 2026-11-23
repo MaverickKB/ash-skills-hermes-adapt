@@ -20,4 +20,4 @@ The [tensor gate](scripts/kernel_gate.py) compares JSON or raw binary tensors an
 
 ## Pair it with
 
-[Model bring-up](../../../skills/tensorfold/model-bringup/README.md) · [Output parity](../../../skills/tensorfold/output-parity/README.md)
+[Model bring-up](../model-bringup/README.md) · [Output parity](../output-parity/README.md)

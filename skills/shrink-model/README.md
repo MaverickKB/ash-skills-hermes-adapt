@@ -20,4 +20,4 @@ Start with the [parameter counter](scripts/count_params.py), explore the [budget
 
 ## Pair it with
 
-[Model bring-up](../../skills/tensorfold/model-bringup/README.md) · [Output parity](../../skills/tensorfold/output-parity/README.md)
+[Model bring-up](../tensorfold/model-bringup/README.md) · [Output parity](../tensorfold/output-parity/README.md)

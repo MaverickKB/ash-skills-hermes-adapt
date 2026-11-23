@@ -20,4 +20,4 @@ The [lane calculator](scripts/lane_math.py) compares single and concurrent throu
 
 ## Pair it with
 
-[Serving concurrency](../../../skills/tensorfold/serving-concurrency/README.md) · [Speedup referee](../../../skills/tensorfold/speedup-referee/README.md)
+[Serving concurrency](../serving-concurrency/README.md) · [Speedup referee](../speedup-referee/README.md)

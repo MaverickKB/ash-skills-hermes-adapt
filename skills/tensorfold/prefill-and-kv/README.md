@@ -20,4 +20,4 @@ The [prefill planner](scripts/prefill_plan.py) sizes whole pages, estimates spil
 
 ## Pair it with
 
-[Model bring-up](../../../skills/tensorfold/model-bringup/README.md) · [Serving concurrency](../../../skills/tensorfold/serving-concurrency/README.md)
+[Model bring-up](../model-bringup/README.md) · [Serving concurrency](../serving-concurrency/README.md)

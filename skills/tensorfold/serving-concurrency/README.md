@@ -20,4 +20,4 @@ The [burst audit](scripts/concurrency_audit.py) reads request traces and reports
 
 ## Pair it with
 
-[One-stream lanes](../../../skills/tensorfold/one-stream-lanes/README.md) · [Speedup referee](../../../skills/tensorfold/speedup-referee/README.md)
+[One-stream lanes](../one-stream-lanes/README.md) · [Speedup referee](../speedup-referee/README.md)

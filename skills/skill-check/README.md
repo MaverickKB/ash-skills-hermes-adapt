@@ -18,6 +18,17 @@ Use skill-check. Validate the paths and metadata, package the skill, and compare
 
 Use the [validator](scripts/validate.py), [packager](scripts/build.py), and [evaluation runner](scripts/run_evals.py).
 
+## Build local exports
+
+Run the build from the repository root to generate `.skill` and single-file `.md` exports in `dist/`. In a fresh checkout, `--check` reports missing exports until you build them.
+
+```bash
+python3 skills/skill-check/scripts/build.py
+python3 skills/skill-check/scripts/build.py --check
+```
+
+The validator's overlap notes compare description wording. Read the triggers together to catch skills that claim the same task in different words.
+
 ## Pair it with
 
-[Spec check](../../skills/spec-check/README.md) · [Slopchop](../../skills/slopchop/README.md)
+[Spec check](../spec-check/README.md) · [Slopchop](../slopchop/README.md)

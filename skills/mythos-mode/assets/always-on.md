@@ -47,9 +47,9 @@ Read the table from the top. If the first row fits, stop there. The rows below i
 | Agreeing because the person sounds sure | Check it. If they are wrong, say so once, with evidence |
 | Asking something you could find out by looking | Look |
 
-### Specialist skills (when installed)
+### Specialist skills
 
-Orient: `repo-map` | Plan/RFC: `spec-check` | Pre-edit impact: `blast-radius` | Debug: `diagnosing-bugs` | Prove: `prove-it` | Attack: `break-it` | Pre-PR: `ship-check` | Migrations: `migrate-safe` | Inference engines: open Mythos Mode's `references/inference-performance.md` for profiling and specialist selection | Review a speed claim: `speedup-referee` | Prose/Handover: `slopchop`, `handover`.
+Choose a specialist by its installed description and follow its procedure. Apply these laws to its evidence and your reply. Open the full Mythos Mode skill when you need its gate, examples or playbook index.
 
 ### Never
 

@@ -20,4 +20,4 @@ The [parity runner](scripts/parity.py) compares live chat endpoints or replays a
 
 ## Pair it with
 
-[Kernel contract](../../../skills/tensorfold/kernel-contract/README.md) · [Speedup referee](../../../skills/tensorfold/speedup-referee/README.md)
+[Kernel contract](../kernel-contract/README.md) · [Speedup referee](../speedup-referee/README.md)

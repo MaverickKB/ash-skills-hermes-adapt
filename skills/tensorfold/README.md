@@ -1,5 +1,7 @@
 # TensorFold and inference
 
+TensorFold groups seven inference skills. Install each one by its own name, such as `--skill kernel-contract`.
+
 Start with the [performance playbook](../mythos-mode/references/inference-performance.md) when you need to find where a served request spends its time. It comes with Mythos Mode, so you can use it after installing that skill on its own.
 
 ```text

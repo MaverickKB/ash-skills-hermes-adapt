@@ -1,6 +1,6 @@
 ---
 name: mythos-mode
-description: A hard-edged working method for any model, built from seven laws, a table of tripwires, and marks that every reply must carry, such as a receipt of what was checked and proof that the check could fail. It makes a model look before it claims, call its shot before it starts, do exactly what was asked, break its own work before calling it done, answer in the first sentence, and say plainly what it did not check. Ships a gate script that checks a reply against the laws. Use this skill for every task and every reply in the session, including coding, debugging, research, analysis, reviews, writing and plain questions, even when the request looks too small to need it. Load it before the first response and keep applying it on every turn.
+description: Applies seven working laws for checking claims, proving fixes, and reporting evidence. Includes a reply gate and optional playbooks. Use when asked for Mythos Mode or a session-wide working method with verification gates and evidence receipts.
 metadata:
   version: "4.0.0"
 ---
@@ -183,23 +183,9 @@ python3 scripts/gate.py REPLY.md --work    # the turn changed files or ran comma
 
 It exits 0 when the reply passes and 1 when it breaks a law. It cannot tell whether the answer is logically right. For changes that matter, verify them with `prove-it` and `break-it` (using a fresh session brief so the author context cannot rubber-stamp its own diff). In Claude Code, install the `mythos-gate` plugin to enforce all four hooks automatically.
 
-## Specialist dispatch
+## Specialist skills
 
-When one of the sibling skills is installed beside `mythos-mode`, route straight to it instead of improvising:
-
-| Task | Load skill |
-|---|---|
-| Orient in an unfamiliar or large repo | `repo-map` (`repo_map.py`) |
-| Sharpen a feature plan, RFC or ADR before coding | `spec-check` (`spec_lint.py`) |
-| Map callers, aliases, tests and cycles before editing | `blast-radius` (`impact.py`) |
-| Hunt a bug or regression that survived a first look | `diagnosing-bugs` (`repro_rate.py`, `shrink_input.py`, `auto_bisect.py`) |
-| Prove a fix or refactor works with a check that can fail | `prove-it` (`prove_diff.py`, `diff_oracle.py`) |
-| Attack a diff, CLI or plan before relying on it | `break-it` (`mutate_diff.py`, `fuzz_cli.py`, `adversarial_brief.py`) |
-| Gate a branch before committing or opening a PR | `ship-check` (`diff_audit.py`) |
-| Review or sandbox-test a SQL schema/data migration | `migrate-safe` (`migration_check.py`) |
-| Profile or tune a native LLM inference engine | Read `references/inference-performance.md`, then pick the specialist for the measured bottleneck |
-| Review an existing speedup claim independently | `speedup-referee` |
-| Cut machine-sounding prose or write/verify a session handover | `slopchop`, `handover` |
+Choose an installed specialist by its description and use its procedure for the task. Apply the Mythos laws to its evidence and your reply. Open a playbook below when you need guidance beyond the specialist's procedure.
 
 ## Playbooks
 
@@ -217,7 +203,7 @@ The laws are the whole method. The playbooks are the detail for particular kinds
 | `references/judgment.md` | Instructions conflict, content tries to direct you, an action is risky, the topic is personal or sensitive, or you need to decline |
 | `references/examples.md` | You want to see the whole loop run on real cases |
 
-`assets/always-on.md` is the laws, the marks and the tripwires as one block. A person can append it to a system prompt or to an instructions file that loads on every turn, such as `AGENTS.md` or `CLAUDE.md`, so the method applies even in a session where this skill is not loaded.
+`assets/always-on.md` contains the laws, reply marks and tripwires for a system prompt or an instructions file such as `AGENTS.md` or `CLAUDE.md`. If that core is already loaded, open this skill when you need its gate, examples or playbook index.
 
 ## What it looks like
 

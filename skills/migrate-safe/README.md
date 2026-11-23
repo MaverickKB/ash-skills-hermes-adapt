@@ -20,4 +20,4 @@ The [migration checker](scripts/migration_check.py) lints SQL for hazards and te
 
 ## Pair it with
 
-[Spec check](../../skills/spec-check/README.md) · [Ship check](../../skills/ship-check/README.md)
+[Spec check](../spec-check/README.md) · [Ship check](../ship-check/README.md)

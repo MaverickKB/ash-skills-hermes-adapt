@@ -20,4 +20,4 @@ Work through the evidence in [SKILL.md](SKILL.md) with the original inputs, meas
 
 ## Pair it with
 
-[Fair bench](../../../skills/fair-bench/README.md) · [Output parity](../../../skills/tensorfold/output-parity/README.md)
+[Fair bench](../../fair-bench/README.md) · [Output parity](../output-parity/README.md)

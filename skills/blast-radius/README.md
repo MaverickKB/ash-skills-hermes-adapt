@@ -20,4 +20,4 @@ The [impact mapper](scripts/impact.py) starts from a file, symbol, or Git diff a
 
 ## Pair it with
 
-[Repo map](../../skills/repo-map/README.md) · [Ship check](../../skills/ship-check/README.md)
+[Repo map](../repo-map/README.md) · [Ship check](../ship-check/README.md)

@@ -20,4 +20,4 @@ The [handover checker](scripts/handover_check.py) verifies cited files, branches
 
 ## Pair it with
 
-[Diagnosing bugs](../../skills/diagnosing-bugs/README.md) · [Prove it](../../skills/prove-it/README.md)
+[Diagnosing bugs](../diagnosing-bugs/README.md) · [Prove it](../prove-it/README.md)

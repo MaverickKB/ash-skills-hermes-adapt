@@ -20,4 +20,4 @@ Run the [prose scanner](scripts/scan.py) to flag stock phrasing and em dashes, i
 
 ## Pair it with
 
-[Handover](../../skills/handover/README.md) · [Spec check](../../skills/spec-check/README.md)
+[Handover](../handover/README.md) · [Spec check](../spec-check/README.md)

@@ -20,4 +20,4 @@ Measure with the [repro rate tool](scripts/repro_rate.py), reduce with the [inpu
 
 ## Pair it with
 
-[Prove it](../../skills/prove-it/README.md) · [Handover](../../skills/handover/README.md)
+[Prove it](../prove-it/README.md) · [Handover](../handover/README.md)

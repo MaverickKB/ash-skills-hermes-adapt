@@ -20,4 +20,4 @@ The [repo map tool](scripts/repo_map.py) extracts layout, heavily imported files
 
 ## Pair it with
 
-[Blast radius](../../skills/blast-radius/README.md) · [Spec check](../../skills/spec-check/README.md)
+[Blast radius](../blast-radius/README.md) · [Spec check](../spec-check/README.md)

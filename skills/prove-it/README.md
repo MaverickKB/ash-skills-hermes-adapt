@@ -20,4 +20,4 @@ Use [prove_diff.py](scripts/prove_diff.py) for baseline and fault checks, or [di
 
 ## Pair it with
 
-[Break it](../../skills/break-it/README.md) · [Ship check](../../skills/ship-check/README.md)
+[Break it](../break-it/README.md) · [Ship check](../ship-check/README.md)
