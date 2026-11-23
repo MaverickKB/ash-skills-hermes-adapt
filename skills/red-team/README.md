@@ -2,14 +2,20 @@
 
 > **Use this skill only on hardware you control and are authorised to test.** You are responsible for how you use it and for the consequences of your testing.
 
-Validates written security-review scope and records approvals and evidence in a hash-chained log.
+Keep a written record of the hardware in scope, the approvals you have, and the evidence behind your review.
+
+[All skills](../../README.md#skill-directory)
 
 ## When to use it
 
-You need to document what a defensive security review covers and make its evidence auditable.
+You need to check scope or review the evidence for a defensive security assessment.
 
-Check the written scope against the approved inventory and verify the engagement log before reporting findings.
+## Try it
 
-## What's included
+```text
+Review the written scope for hardware I control. Flag missing approvals and verify the recorded evidence hashes before I use the report.
+```
 
-The [scope checker](scripts/scope_check.py) reads the scope file, and the [engagement log](scripts/engagement_log.py) records decisions and verifies evidence hashes.
+## What you get
+
+Use the [scope checker](scripts/scope_check.py) to inspect the written permissions and the [engagement log](scripts/engagement_log.py) to verify the record.

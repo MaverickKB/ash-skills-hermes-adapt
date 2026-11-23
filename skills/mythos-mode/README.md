@@ -1,13 +1,23 @@
 # Mythos Mode
 
-Checks work against seven rules for evidence, scope, verification, and concise reporting.
+Get a repro you can run, a result you can verify, and a clear account of what still needs checking.
+
+[Agent instructions](SKILL.md) · [All skills](../../README.md#skill-directory)
 
 ## When to use it
 
 When you want to go beast mode on something.
 
-## What's included
+## Try it
 
-`scripts/gate.py` checks a drafted reply for missing evidence and unsupported claims. The playbooks cover coding, research, writing, and judgement.
+```text
+Use mythos-mode. This test fails on CI twice a week. Reproduce it, narrow down the cause, and show me a check that fails without the fix.
+```
 
-Open [SKILL.md](SKILL.md) for the full instructions.
+## What you get
+
+Use the playbooks for coding, research, writing, and judgement. Run the [reply gate](scripts/gate.py) to catch unsupported claims and missing verification details.
+
+## Pair it with
+
+[Prove it](../../skills/prove-it/README.md) · [Diagnosing bugs](../../skills/diagnosing-bugs/README.md)

@@ -1,17 +1,23 @@
 # Slopchop
 
-Finds filler and stock phrasing, removes em dashes from editable prose, and keeps the writer's own voice.
+Cut the filler and make the writing sound like you.
+
+[Agent instructions](SKILL.md) · [All skills](../../README.md#skill-directory)
 
 ## When to use it
 
-A README, report, or handover uses generic claims where readers need specifics.
+Your draft hides the result under stock phrases, em dashes, or third-person narration.
 
-Replace broad claims with concrete descriptions of what changed, what was measured, or how to use it.
+## Try it
 
-When writing on your behalf, Slopchop uses first person and addresses the reader directly.
+```text
+Use slopchop on this update. Keep my facts, write in my voice, address the reader directly, and remove every em dash from the editable prose.
+```
 
-## What's included
+## What you get
 
-`scripts/scan.py` flags recurring writing patterns, including em dashes written as characters or HTML entities.
+Run the [prose scanner](scripts/scan.py) to flag stock phrasing and em dashes, including HTML entities.
 
-Open [SKILL.md](SKILL.md) for the full instructions.
+## Pair it with
+
+[Handover](../../skills/handover/README.md) · [Spec check](../../skills/spec-check/README.md)

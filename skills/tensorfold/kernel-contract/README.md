@@ -1,15 +1,23 @@
 # Kernel contract
 
-Compares kernel outputs bit for bit or against a specified floating-point tolerance.
+Catch a changed bit in a new kernel even when ordinary inputs still look fine.
+
+[Agent instructions](SKILL.md) · [All skills](../../../README.md#skill-directory)
 
 ## When to use it
 
-You're fusing, replacing, or tuning a GPU or CPU inference kernel.
+You're replacing or fusing an inference kernel and need an exact or tolerance-bounded comparison.
 
-Test odd tensor sizes and special floating-point values, then deliberately change an output to see whether the check catches it.
+## Try it
 
-## What's included
+```text
+Use kernel-contract. Compare the old and new attention outputs on odd dimensions, signed zero, and NaNs. Include one deliberate mismatch.
+```
 
-`scripts/kernel_gate.py` compares JSON tensors or raw binary tensors and runs a negative control.
+## What you get
 
-Open [SKILL.md](SKILL.md) for the full instructions.
+The [tensor gate](scripts/kernel_gate.py) compares JSON or raw binary tensors and checks that a deliberately changed value fails.
+
+## Pair it with
+
+[Model bring-up](../../../skills/tensorfold/model-bringup/README.md) · [Output parity](../../../skills/tensorfold/output-parity/README.md)

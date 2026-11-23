@@ -1,15 +1,23 @@
 # Fair bench
 
-Measures baseline noise and compares two commands in alternating order.
+Measure how much the baseline varies before you call the candidate faster.
+
+[Agent instructions](SKILL.md) · [All skills](../../README.md#skill-directory)
 
 ## When to use it
 
-You need to tell a real speedup from run-to-run variation.
+A timing improved once and you need to know whether the result holds across reruns.
 
-Benchmark the same workload on both versions and record how much the baseline varies before quoting a percentage.
+## Try it
 
-## What's included
+```text
+Use fair-bench to compare these two parser commands on the same input. Measure the baseline noise first and give me the raw runs behind your verdict.
+```
 
-`scripts/ab_bench.py` reports the measured difference, baseline noise, and a verdict.
+## What you get
 
-Open [SKILL.md](SKILL.md) for the full instructions.
+The [benchmark runner](scripts/ab_bench.py) alternates the commands and reports the measured gap and noise floor.
+
+## Pair it with
+
+[Speedup referee](../../skills/tensorfold/speedup-referee/README.md) · [Inference speed hunt](../../skills/tensorfold/inference-speed-hunt/README.md)

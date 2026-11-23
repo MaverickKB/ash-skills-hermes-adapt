@@ -1,15 +1,23 @@
 # Blast radius
 
-Traces callers, aliased imports, dependent modules, tests, and documentation for a proposed change.
+Find the downstream caller that can turn a one-line change into a broken release.
+
+[Agent instructions](SKILL.md) · [All skills](../../README.md#skill-directory)
 
 ## When to use it
 
-You're renaming a symbol, changing a signature, or removing a module.
+You're renaming a symbol, changing an interface, or removing a module.
 
-Before renaming an exported function, list its direct callers, re-exports, and dependent tests.
+## Try it
 
-## What's included
+```text
+Use blast-radius before I rename this exported function. Find aliased callers, dependent modules, tests, and documentation that need the new name.
+```
 
-`scripts/impact.py` accepts a symbol, a file, or a Git diff as its starting point.
+## What you get
 
-Open [SKILL.md](SKILL.md) for the full instructions.
+The [impact mapper](scripts/impact.py) starts from a file, symbol, or Git diff and follows dependencies in the repository.
+
+## Pair it with
+
+[Repo map](../../skills/repo-map/README.md) · [Ship check](../../skills/ship-check/README.md)

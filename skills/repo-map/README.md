@@ -1,15 +1,23 @@
 # Repo map
 
-Summarises a repository's layout, build and test commands, and heavily imported files.
+Find the files that matter before you open a dozen tabs.
+
+[Agent instructions](SKILL.md) · [All skills](../../README.md#skill-directory)
 
 ## When to use it
 
-You're opening an unfamiliar repository or planning changes across several modules.
+You're new to a repository or need to trace a change across several packages.
 
-Ask for the entry points and test commands for the area you're about to change.
+## Try it
 
-## What's included
+```text
+Use repo-map. Where does an upload request enter this codebase, which packages handle it, and what test command should I run?
+```
 
-`scripts/repo_map.py` prints a compact repository map with file and symbol references.
+## What you get
 
-Open [SKILL.md](SKILL.md) for the full instructions.
+The [repo map tool](scripts/repo_map.py) extracts layout, heavily imported files, and commands from project manifests and CI.
+
+## Pair it with
+
+[Blast radius](../../skills/blast-radius/README.md) · [Spec check](../../skills/spec-check/README.md)

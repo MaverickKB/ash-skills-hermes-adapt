@@ -1,15 +1,23 @@
 # Diagnosing bugs
 
-Reproduces failures, reduces failing inputs, and narrows regressions with Git bisection.
+Find where a failure starts and get a small test that reproduces it.
+
+[Agent instructions](SKILL.md) · [All skills](../../README.md#skill-directory)
 
 ## When to use it
 
-A failure is intermittent, a first fix didn't work, or behaviour differs between versions.
+A test flakes, a first fix failed, or a regression appeared somewhere between two versions.
 
-Measure how often the test fails, find the smallest reproducer, then compare plausible causes against that evidence.
+## Try it
 
-## What's included
+```text
+Use diagnosing-bugs. This parser crashes only on certain inputs. Reduce one failing file, test competing explanations, and find the first bad commit if you can.
+```
 
-The bundled scripts measure failure rates, shrink input files, and bisect commits.
+## What you get
 
-Open [SKILL.md](SKILL.md) for the full instructions.
+Measure with the [repro rate tool](scripts/repro_rate.py), reduce with the [input shrinker](scripts/shrink_input.py), or narrow history with [auto bisect](scripts/auto_bisect.py).
+
+## Pair it with
+
+[Prove it](../../skills/prove-it/README.md) · [Handover](../../skills/handover/README.md)

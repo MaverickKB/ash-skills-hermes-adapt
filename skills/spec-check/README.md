@@ -1,15 +1,23 @@
 # Spec check
 
-Finds vague requirements, missing failure cases, and broken links between a spec and its tests.
+Turn a feature pitch into something you can test.
+
+[Agent instructions](SKILL.md) · [All skills](../../README.md#skill-directory)
 
 ## When to use it
 
-You want a design or feature proposal that someone can implement and verify.
+You're reviewing an RFC or writing a requirement with vague words such as fast or reliable.
 
-Turn `make retries more reliable` into a retry limit, a timeout, and a test for what happens when retries run out.
+## Try it
 
-## What's included
+```text
+Use spec-check on this retry spec. Give me a maximum retry count, a timeout, and an acceptance check for exhausting the retries.
+```
 
-`scripts/spec_lint.py` flags ambiguous requirements and checks paths and requirement IDs.
+## What you get
 
-Open [SKILL.md](SKILL.md) for the full instructions.
+The [spec linter](scripts/spec_lint.py) flags vague language, missing failure paths, and requirement IDs with broken or missing references.
+
+## Pair it with
+
+[Engineering excellence](../../skills/engineering-excellence/README.md) · [Prove it](../../skills/prove-it/README.md)

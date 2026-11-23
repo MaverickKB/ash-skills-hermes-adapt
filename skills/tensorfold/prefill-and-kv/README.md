@@ -1,15 +1,23 @@
 # Prefill and KV
 
-Calculates prefill work, sizes cache residency in whole pages, and checks saved cache state.
+Know how many cache pages fit before you find out by spilling to disk.
+
+[Agent instructions](SKILL.md) · [All skills](../../../README.md#skill-directory)
 
 ## When to use it
 
-You're tuning prompt chunking, prefix reuse, or KV-cache memory and spill behaviour.
+You're changing prompt chunking, prefix reuse, KV memory limits, or restore behaviour.
 
-Estimate how many KV pages fit in memory, then compare saved state after cold and resumed prefill.
+## Try it
 
-## What's included
+```text
+Use prefill-and-kv. Size the cache for this context length and concurrency, then compare cold and resumed cache state.
+```
 
-`scripts/prefill_plan.py` compares prompt workloads, sizes cache pages, and verifies saved-state hashes.
+## What you get
 
-Open [SKILL.md](SKILL.md) for the full instructions.
+The [prefill planner](scripts/prefill_plan.py) sizes whole pages, estimates spill restore bandwidth, and checks saved-state hashes.
+
+## Pair it with
+
+[Model bring-up](../../../skills/tensorfold/model-bringup/README.md) · [Serving concurrency](../../../skills/tensorfold/serving-concurrency/README.md)

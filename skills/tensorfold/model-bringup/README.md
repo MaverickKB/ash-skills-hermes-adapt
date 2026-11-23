@@ -1,15 +1,23 @@
 # Model bring-up
 
-Inspects checkpoint shards, estimates KV-cache requirements, and checks output parity during model bring-up.
+Know what a checkpoint contains before you wire it into your inference engine.
+
+[Agent instructions](SKILL.md) · [All skills](../../../README.md#skill-directory)
 
 ## When to use it
 
-You're adding an open-weight model or checkpoint format to an inference runtime.
+You're adding a model family or a checkpoint format and need to verify weights, memory requirements, and outputs.
 
-Verify tensor names, shard completeness, and memory requirements before implementing loaders or fused kernels.
+## Try it
 
-## What's included
+```text
+Use model-bringup. Verify the shard index, confirm the tensor layouts, and estimate KV-cache memory before we touch the loader.
+```
 
-`scripts/inspect_checkpoint.py` reads checkpoint metadata. `scripts/verify_receipts.py` compares recorded output hashes.
+## What you get
 
-Open [SKILL.md](SKILL.md) for the full instructions.
+Use the [checkpoint inspector](scripts/inspect_checkpoint.py) for metadata and the [receipt verifier](scripts/verify_receipts.py) for output hashes.
+
+## Pair it with
+
+[Kernel contract](../../../skills/tensorfold/kernel-contract/README.md) · [Output parity](../../../skills/tensorfold/output-parity/README.md)

@@ -1,15 +1,23 @@
 # Handover
 
-Writes handover notes and checks whether their file, branch, and commit references still match the repository.
+Give the next session a place to start that still matches the repo.
+
+[Agent instructions](SKILL.md) · [All skills](../../README.md#skill-directory)
 
 ## When to use it
 
-Another person or agent is taking over work in progress.
+You're pausing work or passing it to another person or agent.
 
-Record the checks that ran, the unresolved work, and the next reproducible command.
+## Try it
 
-## What's included
+```text
+Use handover. Write down which checks ran, where the work stopped, and the next command I can run to reproduce the issue.
+```
 
-`scripts/handover_check.py` checks a note against the current repository.
+## What you get
 
-Open [SKILL.md](SKILL.md) for the full instructions.
+The [handover checker](scripts/handover_check.py) verifies cited files, branches, commits, and working-tree state.
+
+## Pair it with
+
+[Diagnosing bugs](../../skills/diagnosing-bugs/README.md) · [Prove it](../../skills/prove-it/README.md)

@@ -2,53 +2,93 @@
 
 ![A red laser traces the profile of a black basalt lion.](assets/mythos-mode.webp)
 
-Pick a skill for the job in front of you, from investigating a flaky test to checking that an inference kernel produces the same tokens. Each skill has a README with a use case and a `SKILL.md` with the agent instructions.
+I want my agent to show me the bug it reproduced, the test that caught it, and the runs behind its speedup claim. These 24 skills give you a way to ask for that work.
 
-## Verification and review
+[Install](#install) · [Try Mythos Mode](#see-mythos-mode-in-action) · [Pick a workflow](#pick-a-workflow) · [Browse the skills](#skill-directory) · [Supported agents](#supported-agents)
+
+## Install
+
+From your project, use the Skills CLI with Node.js 22.20 or later. [Skills CLI](https://github.com/vercel-labs/skills)
+
+```bash
+npx skills add ashhart/skills --skill mythos-mode
+```
+
+Replace `mythos-mode` with any name in the directory. For a manual install, copy the folder containing the skill's `SKILL.md` into [your agent's skills directory](#supported-agents).
+
+## See Mythos Mode in action
+
+> [!TIP]
+> **When you want to go beast mode on something.**
+
+```text
+Use mythos-mode. This test passes locally and fails on CI.
+Reproduce the failure, narrow down the cause, and show me the check that proves the fix.
+```
+
+You can see the reply gate reject an unsupported fix claim locally. Run this from a checkout on macOS or Linux.
+
+```bash
+printf '%s\n' 'Fixed. All tests pass.' | python3 skills/mythos-mode/scripts/gate.py /dev/stdin --work
+```
+
+The gate reports `GATE: FAIL (3 problems)`. It asks which checks ran, what remains unchecked, and whether a check caught the failure. [Mythos Mode guide](skills/mythos-mode/README.md)
+
+## Pick a workflow
+
+| What you're facing | Skills to use in order | What you get |
+| --- | --- | --- |
+| "It only fails on CI." | [Diagnosing bugs](skills/diagnosing-bugs/README.md) &rarr; [Prove it](skills/prove-it/README.md) | A reproducer and a test that catches the original failure. |
+| "This change touches a lot of callers." | [Blast radius](skills/blast-radius/README.md) &rarr; [Ship check](skills/ship-check/README.md) | A map of what depends on your changes and a verdict on the staged snapshot. |
+| "Decode is faster. Can we ship it?" | [Output parity](skills/tensorfold/output-parity/README.md) &rarr; [Fair bench](skills/fair-bench/README.md) &rarr; [Speedup referee](skills/tensorfold/speedup-referee/README.md) | A parity verdict, repeat timings, and an independent review of the speedup claim. |
+
+## Skill directory
+
+Open a guide for a copyable prompt, bundled tools, and related skills.
+
+### Verification and review
 
 | Skill | What it does | When to use it |
 | --- | --- | --- |
-| [`mythos-mode`](skills/mythos-mode/README.md) | Checks work against seven rules for evidence, scope, verification, and concise reporting. | When you want to go beast mode on something. |
-| [`prove-it`](skills/prove-it/README.md) | Tests fixes against a baseline and checks whether tests detect a deliberately introduced fault. | You need evidence that a retry fix works or that a refactor preserves behaviour. |
-| [`break-it`](skills/break-it/README.md) | Uses code mutations and edge-case inputs to find defects that a test suite or review missed. | You want to stress-test a code change, command-line tool, or implementation plan. |
-| [`ship-check`](skills/ship-check/README.md) | Audits a Git diff for credential patterns, debug code, broken Python callers, and failed checks. | You want a pre-commit or pre-merge check of the code that will actually ship. |
-| [`fair-bench`](skills/fair-bench/README.md) | Measures baseline noise and compares two commands in alternating order. | You need to tell a real speedup from run-to-run variation. |
-| [`red-team`](skills/red-team/README.md) | Validates written security-review scope and records approvals and evidence in a hash-chained log. | You need to document what a defensive security review covers and make its evidence auditable. |
+| [`mythos-mode`](skills/mythos-mode/README.md) | Check your agent's claims against its work. | When you want to go beast mode on something. |
+| [`prove-it`](skills/prove-it/README.md) | Show that the same test fails on the baseline and passes with the fix. | A green test needs a meaningful failure case. |
+| [`break-it`](skills/break-it/README.md) | Find failing inputs and mutations your tests miss. | You're about to rely on a diff or local CLI. |
+| [`ship-check`](skills/ship-check/README.md) | Audit staged changes and run your chosen checks. | You're about to commit or merge. |
+| [`fair-bench`](skills/fair-bench/README.md) | Compare commands against measured baseline noise. | A speedup needs more than one timing. |
+| [`red-team`](skills/red-team/README.md) | Review approved scope and verify a hash-chained evidence log. | You need a documented defensive review. |
 
-## Planning, building, and debugging
-
-| Skill | What it does | When to use it |
-| --- | --- | --- |
-| [`repo-map`](skills/repo-map/README.md) | Summarises a repository's layout, build and test commands, and heavily imported files. | You're opening an unfamiliar repository or planning changes across several modules. |
-| [`spec-check`](skills/spec-check/README.md) | Finds vague requirements, missing failure cases, and broken links between a spec and its tests. | You want a design or feature proposal that someone can implement and verify. |
-| [`engineering-excellence`](skills/engineering-excellence/README.md) | Guides production code changes through API design, typing, modularity, and verification. | You're adding a feature, reviewing a change, or refactoring code with existing callers. |
-| [`blast-radius`](skills/blast-radius/README.md) | Traces callers, aliased imports, dependent modules, tests, and documentation for a proposed change. | You're renaming a symbol, changing a signature, or removing a module. |
-| [`diagnosing-bugs`](skills/diagnosing-bugs/README.md) | Reproduces failures, reduces failing inputs, and narrows regressions with Git bisection. | A failure is intermittent, a first fix didn't work, or behaviour differs between versions. |
-| [`migrate-safe`](skills/migrate-safe/README.md) | Lints SQL migrations and checks schema and row data across apply, repeat, and rollback in SQLite. | You're changing a schema, backfilling rows, or testing whether a migration can be reversed. |
-
-## TensorFold and inference
-
-These skills cover checkpoints, kernels, caching, decoding, and served performance. They live in the [TensorFold group](skills/tensorfold/) and can be installed individually.
+### Planning, building, and debugging
 
 | Skill | What it does | When to use it |
 | --- | --- | --- |
-| [`model-bringup`](skills/tensorfold/model-bringup/README.md) | Inspects checkpoint shards, estimates KV-cache requirements, and checks output parity during model bring-up. | You're adding an open-weight model or checkpoint format to an inference runtime. |
-| [`inference-speed-hunt`](skills/tensorfold/inference-speed-hunt/README.md) | Measures time spent in a served request and uses that breakdown to choose optimisations. | You know inference is slow and need to locate the bottleneck. |
-| [`kernel-contract`](skills/tensorfold/kernel-contract/README.md) | Compares kernel outputs bit for bit or against a specified floating-point tolerance. | You're fusing, replacing, or tuning a GPU or CPU inference kernel. |
-| [`one-stream-lanes`](skills/tensorfold/one-stream-lanes/README.md) | Measures the gap between single-request and concurrent throughput and evaluates draft widths. | One request leaves the accelerator idle or a wider draft window stops improving decode speed. |
-| [`output-parity`](skills/tensorfold/output-parity/README.md) | Compares response text, finish reasons, token counts, and available token bytes across inference builds. | You've changed a kernel, cache path, or speculative decoder and expect identical output. |
-| [`prefill-and-kv`](skills/tensorfold/prefill-and-kv/README.md) | Calculates prefill work, sizes cache residency in whole pages, and checks saved cache state. | You're tuning prompt chunking, prefix reuse, or KV-cache memory and spill behaviour. |
-| [`serving-concurrency`](skills/tensorfold/serving-concurrency/README.md) | Audits concurrent request traces for actual overlap, token parity, throughput, and tail latency. | You're tuning batching, queueing, or concurrency limits. |
-| [`speedup-referee`](skills/tensorfold/speedup-referee/README.md) | Independently reviews whether a claimed speedup holds under the same workload and output contract. | You're reviewing a performance claim before merging it or publishing the numbers. |
+| [`repo-map`](skills/repo-map/README.md) | Find entry points, heavily imported files, and test commands. | You just opened an unfamiliar codebase. |
+| [`spec-check`](skills/spec-check/README.md) | Turn vague requirements into checks and flag missing failure paths. | A feature or design needs testable acceptance criteria. |
+| [`engineering-excellence`](skills/engineering-excellence/README.md) | Review interfaces, modularity, and failure paths before making a change. | You're building or refactoring production code. |
+| [`blast-radius`](skills/blast-radius/README.md) | Trace callers, aliases, re-exports, and affected tests. | You're removing or renaming a shared symbol. |
+| [`diagnosing-bugs`](skills/diagnosing-bugs/README.md) | Reproduce a failure, shrink its input, and bisect the regression. | A test flakes or a bug only appears on some builds. |
+| [`migrate-safe`](skills/migrate-safe/README.md) | Lint SQL and verify schema and row data through a SQLite rollback. | You're changing a schema or backfilling data. |
 
-## Writing and maintenance
+### TensorFold and inference
 
 | Skill | What it does | When to use it |
 | --- | --- | --- |
-| [`handover`](skills/handover/README.md) | Writes handover notes and checks whether their file, branch, and commit references still match the repository. | Another person or agent is taking over work in progress. |
-| [`shrink-model`](skills/shrink-model/README.md) | Plans structural pruning and recovery training from an open-weight parent checkpoint. | You need a smaller descendant model within a total or active parameter budget. |
-| [`skill-check`](skills/skill-check/README.md) | Validates skill folders, builds distributable packages, and compares agent behaviour with and without a skill. | You're writing or updating skills for others to install. |
-| [`slopchop`](skills/slopchop/README.md) | Finds filler and stock phrasing in prose and guides a rewrite that preserves meaning. | A README, report, or handover uses generic claims where readers need specifics. |
+| [`model-bringup`](skills/tensorfold/model-bringup/README.md) | Inspect checkpoint shards and estimate KV-cache memory. | You're adding a new model or checkpoint format. |
+| [`inference-speed-hunt`](skills/tensorfold/inference-speed-hunt/README.md) | Break down served request time and measure a targeted change. | You need to find where inference slows down. |
+| [`kernel-contract`](skills/tensorfold/kernel-contract/README.md) | Compare kernel output bit for bit or within a numerical tolerance. | You're replacing, fusing, or tuning a kernel. |
+| [`one-stream-lanes`](skills/tensorfold/one-stream-lanes/README.md) | Compare single-stream throughput and draft widths. | One request leaves capacity unused. |
+| [`output-parity`](skills/tensorfold/output-parity/README.md) | Compare responses and token bytes across builds. | A cache, kernel, or decoding change should preserve output. |
+| [`prefill-and-kv`](skills/tensorfold/prefill-and-kv/README.md) | Size whole cache pages and verify saved state. | You're tuning prefix reuse, prompt chunking, or spill. |
+| [`serving-concurrency`](skills/tensorfold/serving-concurrency/README.md) | Audit overlapping requests, throughput, and tail latency. | You're changing batching or concurrency limits. |
+| [`speedup-referee`](skills/tensorfold/speedup-referee/README.md) | Review workload, baseline noise, and output parity behind a claimed gain. | You're deciding whether to merge or publish a speedup. |
+| [`shrink-model`](skills/shrink-model/README.md) | Plan structural pruning and verify a smaller checkpoint. | You need to hit a total or active parameter budget. |
+
+### Writing and maintenance
+
+| Skill | What it does | When to use it |
+| --- | --- | --- |
+| [`handover`](skills/handover/README.md) | Record checked work and verify stale file and commit references. | You need another session to pick up the work. |
+| [`skill-check`](skills/skill-check/README.md) | Check skill folders, package them, and compare behaviour on held-out tasks. | You're writing or updating a skill. |
+| [`slopchop`](skills/slopchop/README.md) | Cut filler, remove em dashes, and write in the speaker's voice. | You want a draft to sound like you. |
 
 ## Supported Agents
 

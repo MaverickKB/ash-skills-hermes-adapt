@@ -1,15 +1,23 @@
 # Ship check
 
-Audits a Git diff for credential patterns, debug code, broken Python callers, and failed checks.
+Review the staged changes and get a `SHIP` or `HOLD` verdict with the findings behind it.
+
+[Agent instructions](SKILL.md) · [All skills](../../README.md#skill-directory)
 
 ## When to use it
 
-You want a pre-commit or pre-merge check of the code that will actually ship.
+You're about to commit or merge and want to catch leftover debug code, credential patterns, or broken callers.
 
-Run the audit on staged changes with your project's test command to check the commit candidate in a temporary checkout.
+## Try it
 
-## What's included
+```text
+Use ship-check on my staged changes. Run the test command against that snapshot and show me what would block the commit.
+```
 
-`scripts/diff_audit.py` produces a `SHIP` or `HOLD` verdict with the findings that led to it.
+## What you get
 
-Open [SKILL.md](SKILL.md) for the full instructions.
+Run the [diff audit](scripts/diff_audit.py) on the staged snapshot or working tree. Add your project's test command when you want the verdict to include its result.
+
+## Pair it with
+
+[Blast radius](../../skills/blast-radius/README.md) · [Prove it](../../skills/prove-it/README.md)

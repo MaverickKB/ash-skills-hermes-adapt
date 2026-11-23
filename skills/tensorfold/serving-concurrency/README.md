@@ -1,15 +1,23 @@
 # Serving concurrency
 
-Audits concurrent request traces for actual overlap, token parity, throughput, and tail latency.
+Find where extra clients stop buying throughput and start adding latency.
+
+[Agent instructions](SKILL.md) · [All skills](../../../README.md#skill-directory)
 
 ## When to use it
 
-You're tuning batching, queueing, or concurrency limits.
+You're tuning batching, queueing, or concurrency limits for a serving workload.
 
-Compare solo and concurrent token hashes and review p99 time to first token across an overlapping request sweep.
+## Try it
 
-## What's included
+```text
+Use serving-concurrency. Audit this burst sweep for real overlap, p99 time to first token, and token parity against solo requests.
+```
 
-`scripts/concurrency_audit.py` reads burst traces and reports throughput, latency, and parity findings.
+## What you get
 
-Open [SKILL.md](SKILL.md) for the full instructions.
+The [burst audit](scripts/concurrency_audit.py) reads request traces and reports timing, throughput, and parity findings.
+
+## Pair it with
+
+[One-stream lanes](../../../skills/tensorfold/one-stream-lanes/README.md) · [Speedup referee](../../../skills/tensorfold/speedup-referee/README.md)

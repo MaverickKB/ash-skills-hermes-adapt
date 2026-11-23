@@ -1,15 +1,23 @@
 # Shrink model
 
-Plans structural pruning and recovery training from an open-weight parent checkpoint.
+Plan a smaller descendant of an open-weight checkpoint and check that the candidate fits your parameter budget.
+
+[Agent instructions](SKILL.md) · [All skills](../../README.md#skill-directory)
 
 ## When to use it
 
-You need a smaller descendant model within a total or active parameter budget.
+You need fewer total or active parameters through structural pruning and recovery training.
 
-Count the parent's parameters, choose a candidate that meets the budget, and verify the child checkpoint against the pruning manifest.
+## Try it
 
-## What's included
+```text
+Use shrink-model. Count this checkpoint's parameters, propose a pruning plan within my budget, and verify it against a manifest.
+```
 
-The scripts count parameters, search pruning budgets, and validate checkpoint manifests.
+## What you get
 
-Open [SKILL.md](SKILL.md) for the full instructions.
+Start with the [parameter counter](scripts/count_params.py), explore the [budget calculator](scripts/budget.py), and verify the result with the [manifest checker](scripts/check_manifest.py).
+
+## Pair it with
+
+[Model bring-up](../../skills/tensorfold/model-bringup/README.md) · [Output parity](../../skills/tensorfold/output-parity/README.md)

@@ -1,15 +1,23 @@
 # Skill check
 
-Validates skill folders, builds distributable packages, and compares agent behaviour with and without a skill.
+Check whether a skill loads, packages cleanly, and improves agent behaviour on real tasks.
+
+[Agent instructions](SKILL.md) · [All skills](../../README.md#skill-directory)
 
 ## When to use it
 
-You're writing or updating skills for others to install.
+You're writing a skill or getting one ready for others to install.
 
-Check paths and packaging first, then run held-out tasks to see whether the skill improves outcomes.
+## Try it
 
-## What's included
+```text
+Use skill-check. Validate the paths and metadata, package the skill, and compare agent results on the same held-out cases with and without it.
+```
 
-The bundled scripts validate skill folders, package them, and run evaluations.
+## What you get
 
-Open [SKILL.md](SKILL.md) for the full instructions.
+Use the [validator](scripts/validate.py), [packager](scripts/build.py), and [evaluation runner](scripts/run_evals.py).
+
+## Pair it with
+
+[Spec check](../../skills/spec-check/README.md) · [Slopchop](../../skills/slopchop/README.md)

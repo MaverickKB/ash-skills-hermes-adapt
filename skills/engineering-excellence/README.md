@@ -1,15 +1,23 @@
 # Engineering excellence
 
-Guides production code changes through API design, typing, modularity, and verification.
+Plan the change around the interfaces and failure cases your callers already rely on.
+
+[Agent instructions](SKILL.md) · [All skills](../../README.md#skill-directory)
 
 ## When to use it
 
-You're adding a feature, reviewing a change, or refactoring code with existing callers.
+You're adding a feature, reviewing production code, or refactoring a shared module.
 
-Ask the agent to identify the interfaces and failure paths that the change must preserve, then verify those behaviours.
+## Try it
 
-## What's included
+```text
+Use engineering-excellence. Split this storage module, keep its public behaviour intact, and verify how callers handle partial failures and retries.
+```
 
-The references cover architecture, dependency selection, TypeScript and Node.js, security, and code review.
+## What you get
 
-Open [SKILL.md](SKILL.md) for the full instructions.
+Read the [architecture playbook](references/architecture.md) for design trade-offs and the [verification playbook](references/verification.md) for checks to run before shipping.
+
+## Pair it with
+
+[Blast radius](../../skills/blast-radius/README.md) · [Prove it](../../skills/prove-it/README.md)

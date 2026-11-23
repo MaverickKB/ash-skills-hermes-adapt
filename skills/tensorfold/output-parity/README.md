@@ -1,15 +1,23 @@
 # Output parity
 
-Compares response text, finish reasons, token counts, and available token bytes across inference builds.
+Catch the token that changed after a kernel, cache, or decoding update.
+
+[Agent instructions](SKILL.md) · [All skills](../../../README.md#skill-directory)
 
 ## When to use it
 
-You've changed a kernel, cache path, or speculative decoder and expect identical output.
+You need to prove that two inference builds preserve their output on the same cases.
 
-Compare baseline and candidate on the same prompts, seeds, and temperatures, and inspect the first differing token.
+## Try it
 
-## What's included
+```text
+Use output-parity. Compare both builds on these prompts, temperatures, and seeds, and show me the first token that differs.
+```
 
-`scripts/parity.py` supports live comparisons and replay of recorded responses from chat-completions endpoints.
+## What you get
 
-Open [SKILL.md](SKILL.md) for the full instructions.
+The [parity runner](scripts/parity.py) compares live chat endpoints or replays a baseline recording. It checks raw token bytes when both endpoints report them.
+
+## Pair it with
+
+[Kernel contract](../../../skills/tensorfold/kernel-contract/README.md) · [Speedup referee](../../../skills/tensorfold/speedup-referee/README.md)

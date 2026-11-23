@@ -1,15 +1,23 @@
 # Break it
 
-Uses code mutations and edge-case inputs to find defects that a test suite or review missed.
+Find the edge case the happy-path test missed.
+
+[Agent instructions](SKILL.md) · [All skills](../../README.md#skill-directory)
 
 ## When to use it
 
-You want to stress-test a code change, command-line tool, or implementation plan.
+You want to stress-test a local CLI, a changed line, or an implementation plan before anyone relies on it.
 
-Ask the agent to find which changes on the diff survive the tests, or exercise your CLI with empty input, malformed files, and unusual paths.
+## Try it
 
-## What's included
+```text
+Use break-it on this local CSV importer. Try an empty file, broken UTF-8, and a path with spaces. Report the smallest failing input.
+```
 
-`scripts/mutate_diff.py` tests mutations on changed lines. `scripts/fuzz_cli.py` exercises a local command using temporary inputs.
+## What you get
 
-Open [SKILL.md](SKILL.md) for the full instructions.
+Use the [local CLI fuzzer](scripts/fuzz_cli.py) for input edges or the [diff mutator](scripts/mutate_diff.py) to find changes your tests fail to catch.
+
+## Pair it with
+
+[Prove it](../../skills/prove-it/README.md) · [Diagnosing bugs](../../skills/diagnosing-bugs/README.md)

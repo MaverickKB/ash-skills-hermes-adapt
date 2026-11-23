@@ -1,15 +1,23 @@
 # Inference speed hunt
 
-Measures time spent in a served request and uses that breakdown to choose optimisations.
+Follow a served request and find which stage has room to get faster.
+
+[Agent instructions](SKILL.md) · [All skills](../../../README.md#skill-directory)
 
 ## When to use it
 
-You know inference is slow and need to locate the bottleneck.
+Inference is slow and you're deciding where to spend optimisation time.
 
-Profile prefill, time to first token, decode, and concurrent throughput, then benchmark the change on the same workload.
+## Try it
 
-## What's included
+```text
+Use inference-speed-hunt. Break down time to first token and decode time on this workload, then benchmark one change while checking output parity.
+```
 
-For exact output checks and benchmarking, use the parity and benchmark tools referenced in the skill.
+## What you get
 
-Open [SKILL.md](SKILL.md) for the full instructions.
+Separate prefill, decode, and concurrent throughput so a gain in one stage stays visible alongside regressions in another.
+
+## Pair it with
+
+[Fair bench](../../../skills/fair-bench/README.md) · [Output parity](../../../skills/tensorfold/output-parity/README.md)

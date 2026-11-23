@@ -1,15 +1,23 @@
 # One-stream lanes
 
-Measures the gap between single-request and concurrent throughput and evaluates draft widths.
+Find out why one request leaves the accelerator idle.
+
+[Agent instructions](SKILL.md) · [All skills](../../../README.md#skill-directory)
 
 ## When to use it
 
-One request leaves the accelerator idle or a wider draft window stops improving decode speed.
+You're tuning speculative decode width or trying to close the gap to concurrent throughput.
 
-Compare tokens accepted per pass and passes per second across draft widths, with matching token hashes for the measured cells.
+## Try it
 
-## What's included
+```text
+Use one-stream-lanes. Sweep these draft widths and show which width improves single-stream throughput with the same token hashes.
+```
 
-`scripts/lane_math.py` calculates single-stream share and compares throughput and token receipts.
+## What you get
 
-Open [SKILL.md](SKILL.md) for the full instructions.
+The [lane calculator](scripts/lane_math.py) compares single and concurrent throughput, draft acceptance, and token receipts.
+
+## Pair it with
+
+[Serving concurrency](../../../skills/tensorfold/serving-concurrency/README.md) · [Speedup referee](../../../skills/tensorfold/speedup-referee/README.md)
