@@ -224,11 +224,25 @@ def main(argv=None):
     folders = sorted(
         os.path.join(args.skills_dir, entry) for entry in os.listdir(args.skills_dir)
         if os.path.isdir(os.path.join(args.skills_dir, entry)) and not entry.startswith("."))
+    group = os.path.join(args.skills_dir, "tensorfold")
+    if group in folders and not os.path.isfile(os.path.join(group, "SKILL.md")):
+        grouped = [
+            os.path.join(group, entry) for entry in sorted(os.listdir(group))
+            if not entry.startswith(".") and os.path.isdir(os.path.join(group, entry))
+        ]
+        if grouped:
+            folders.remove(group)
+            folders.extend(grouped)
     if not folders:
         print(f"error: no skill folders in {args.skills_dir}", file=sys.stderr)
         return 2
     problems, descriptions = [], {}
+    seen = set()
     for folder in folders:
+        name = os.path.basename(folder)
+        if name in seen:
+            problems.append(f"{folder}: duplicate skill folder name '{name}'")
+        seen.add(name)
         check_skill(folder, problems, run_scripts=args.run_scripts, strict_prose=args.strict_prose,
                     descriptions=descriptions)
     for problem in problems:

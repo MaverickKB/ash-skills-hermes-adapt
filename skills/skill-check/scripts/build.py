@@ -104,13 +104,31 @@ def write_flat(folder, name, target):
     return len(extras)
 
 
+def discover_skills(skills_dir):
+    roots = [skills_dir]
+    group = os.path.join(skills_dir, "tensorfold")
+    if os.path.isdir(group) and not os.path.isfile(os.path.join(group, "SKILL.md")):
+        roots.append(group)
+    folders = {}
+    for root in roots:
+        for name in sorted(os.listdir(root)):
+            folder = os.path.join(root, name)
+            if not os.path.isfile(os.path.join(folder, "SKILL.md")):
+                continue
+            if name in folders:
+                raise RuntimeError(f"{folder}: duplicate skill folder name '{name}'")
+            folders[name] = folder
+    return folders
+
+
 def build(skills_dir, dist, names):
+    folders = discover_skills(skills_dir)
     os.makedirs(dist, exist_ok=True)
     built = []
     for name in names:
-        folder = os.path.join(skills_dir, name)
-        if not os.path.isfile(os.path.join(folder, "SKILL.md")):
-            raise RuntimeError(f"{name}: no SKILL.md in {folder}")
+        if name not in folders:
+            raise RuntimeError(f"{name}: no SKILL.md found under {skills_dir}")
+        folder = folders[name]
         files = write_zip(folder, name, os.path.join(dist, f"{name}.skill"))
         references = write_flat(folder, name, os.path.join(dist, f"{name}.md"))
         built.append((name, files, references))
@@ -128,10 +146,8 @@ def main(argv=None):
     if not os.path.isdir(args.skills_dir):
         print(f"error: {args.skills_dir} is not a directory", file=sys.stderr)
         return 2
-    names = args.names or sorted(
-        entry for entry in os.listdir(args.skills_dir)
-        if os.path.isfile(os.path.join(args.skills_dir, entry, "SKILL.md")))
     try:
+        names = args.names or sorted(discover_skills(args.skills_dir))
         if args.check:
             with tempfile.TemporaryDirectory() as fresh:
                 build(args.skills_dir, fresh, names)

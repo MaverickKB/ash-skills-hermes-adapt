@@ -55,13 +55,16 @@ def strip_frontmatter(text):
 
 
 def default_system(root, skill):
-    always_on = os.path.join(root, "skills", skill, "assets", "always-on.md")
+    folder = os.path.join(root, "skills", skill)
+    if not os.path.isfile(os.path.join(folder, "SKILL.md")):
+        folder = os.path.join(root, "skills", "tensorfold", skill)
+    always_on = os.path.join(folder, "assets", "always-on.md")
     if os.path.isfile(always_on):
         with open(always_on, encoding="utf-8") as handle:
             text = handle.read()
         marker = "\n---\n"
         return text.split(marker, 1)[1].strip() if marker in text else text.strip()
-    skill_md = os.path.join(root, "skills", skill, "SKILL.md")
+    skill_md = os.path.join(folder, "SKILL.md")
     if os.path.isfile(skill_md):
         with open(skill_md, encoding="utf-8") as handle:
             return strip_frontmatter(handle.read())[1]
