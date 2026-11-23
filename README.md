@@ -2,7 +2,7 @@
 
 ![A red laser traces the profile of a black basalt lion.](assets/mythos-mode.webp)
 
-I want my agent to show me the bug it reproduced, the test that caught it, and the runs behind its speedup claim. These 22 skills give you a way to ask for that work.
+I want my agent to show me the bug it reproduced, the test that caught it, and the runs behind its speedup claim. These 23 skills give you a way to ask for that work.
 
 [Install](#install) · [Try Mythos Mode](#see-mythos-mode-in-action) · [Pick a workflow](#pick-a-workflow) · [Browse the skills](#skill-directory) · [Supported agents](#supported-agents)
 
@@ -84,10 +84,11 @@ If you need to find where a served request spends its time, start with the [Tens
 | [`speedup-referee`](skills/tensorfold/speedup-referee/README.md) | Review workload, baseline noise, and output parity behind a claimed gain. | You're deciding whether to merge or publish a speedup. |
 | [`shrink-model`](skills/shrink-model/README.md) | Plan structural pruning and verify a smaller checkpoint. | You need to hit a total or active parameter budget. |
 
-### Writing and handover
+### Prompts, writing, and handover
 
 | Skill | What it does | When to use it |
 | --- | --- | --- |
+| [`prompt-roast`](skills/prompt-roast/README.md) | Roasts a bad brief and gives you a better prompt or the question that unlocks it. | You've left your agent guessing and want it to call you out. |
 | [`handover`](skills/handover/README.md) | Record checked work and verify stale file and commit references. | You need another session to pick up the work. |
 | [`slopchop`](skills/slopchop/README.md) | Cut filler, remove em dashes, and write in the speaker's voice. | You want a draft to sound like you. |
 
