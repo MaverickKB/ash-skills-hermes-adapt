@@ -88,7 +88,7 @@ If you need to find where a served request spends its time, start with the [Tens
 
 | Skill | What it does | When to use it |
 | --- | --- | --- |
-| [`prompt-roast`](skills/prompt-roast/README.md) | Roasts a bad brief and gives you a better prompt or the question that unlocks it. | You've left your agent guessing and want it to call you out. |
+| [`prompt-roast`](skills/prompt-roast/README.md) | Gives your brief one sharp roast, then hands you a copyable rewrite. | You've left your agent guessing and want it to call you out. |
 | [`handover`](skills/handover/README.md) | Record checked work and verify stale file and commit references. | You need another session to pick up the work. |
 | [`slopchop`](skills/slopchop/README.md) | Cut filler, remove em dashes, and write in the speaker's voice. | You want a draft to sound like you. |
 

@@ -1,6 +1,6 @@
 # Roast My Prompt
 
-Come on, fam. Give me something I can work with.
+Give me a brief I can use and I'll get to work. Give me "make it better" and you're getting a roast.
 
 [Agent instructions](SKILL.md) · [All skills](../../README.md#skill-directory)
 
@@ -20,11 +20,13 @@ npx skills add ashhart/skills --skill prompt-roast
 Roast this prompt: make the dashboard better.
 ```
 
-> Better how, fam? You've given me a dashboard and a fucking mood.
->
-> "Improve [dashboard screen] so I can [do a specific job]. Keep [what must stay the same]. I'll call it done when [observable result]."
+> Come on, fam, you're meant to be the clever one and "better" is the entire fucking spec.
 
-Ask for a roast, or give the agent a prompt it genuinely can't act on. Expect a short jab and a useful next question or rewrite.
+```text
+Improve [dashboard screen] so I can [complete a specific task]. Keep [what must stay the same]. I'll call it done when [observable result].
+```
+
+Fill the brackets and send the rewrite. You get one jab, then the better prompt.
 
 ## Pair it with
 
