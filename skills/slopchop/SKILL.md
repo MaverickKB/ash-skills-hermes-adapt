@@ -18,6 +18,12 @@ Never change these, whatever they contain.
 - legal, contractual and regulatory wording
 - a voice the person asked for on purpose
 
+## Voice and punctuation
+
+- Remove every em dash (`U+2014`) from editable prose, including headings, lists, captions, and link text. End the sentence, use a comma where it fits, or recast the sentence. Apply the same rule to HTML entities that render as an em dash.
+- Use first person when writing on someone's behalf. Use `I` for the writer's own actions and `we` for work the writer genuinely shares with others. Address the reader as `you` or start with the action.
+- Remove third-person narration about the writer or reader. Rewrite phrases such as `the author` and `the user` from the speaker's point of view. In technical instructions, give the action directly or name the component doing the work.
+
 ## The pass
 
 1. **Scan.** Run the scanner for the patterns a program can find. It skips code, links and quotes.
@@ -90,7 +96,7 @@ Delete all of them. Start with the answer and stop when it is given.
 
 ### 5. The look
 
-- Dashes used as a pause. Use a period or a comma. Do not swap the dash for a hyphen or for brackets. Brackets are for a true aside, such as a unit or a citation.
+- For a pause, end the sentence or use a comma where grammar allows. Keep hyphens that belong to a word or identifier.
 - Bold on many phrases. Bold the one thing the reader must not miss.
 - List items that open with a bold label and a colon, then restate the label. Write a sentence.
 - Headings In Title Case. Use sentence case.
@@ -112,10 +118,9 @@ Cutting is half of it. What remains has to carry something.
 | Writing | Voice |
 |---|---|
 | Documentation, reference, reports, commit messages, changelogs | Plain and neutral. No personality added. The facts carry it |
-| Replies to a person | Direct, like a colleague. Answer first |
+| Replies to a person | Answer first. Address the reader directly |
+| Emails, updates and posts on someone's behalf | Use the writer's own point of view |
 | Essays, posts, opinion | A real point of view. First person where it fits. Sentences of different lengths. A reaction, where the draft had a list of pros and cons |
-
-Voice belongs only in the last row. Adding personality to documentation is its own kind of slop.
 
 ## Before and after
 
@@ -137,10 +142,18 @@ A paragraph of opinion.
 >
 > **After:** I get more done at home and I miss the hallway. Both are true, and most writing about remote work admits only one.
 
+An update written on someone's behalf.
+
+> **Before:** The developer fixed the export. Users can now download the report.
+>
+> **After:** I fixed the export. You can download the report now.
+
 ## Last check
 
 1. Does the first sentence carry the point?
 2. Does every sentence pass the swap test?
 3. Is every claim a fact, a number, or a named source?
 4. Did the scanner come back clean, apart from words used in their literal sense?
-5. Did you leave code, quotes and commands exactly as they were?
+5. Does the final prose contain zero em dashes, including ones rendered from HTML entities?
+6. Does writing on someone's behalf speak in their voice and address the reader directly?
+7. Did you leave code, quotes and commands exactly as they were?

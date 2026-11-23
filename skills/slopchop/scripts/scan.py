@@ -12,7 +12,7 @@ from typing import Iterator, List, NamedTuple, NoReturn, Pattern, Sequence, Tupl
 PROG = "scan"
 
 RULES = {
-    "em-dash": "em dash",
+    "em-dash": "em dash (character or HTML entity)",
     "en-dash": "en dash, unless it joins two numbers as a range",
     "curly-quote": "curly single or double quote (reported once per line)",
     "ai-vocabulary": "stock word that generated text overuses",
@@ -106,7 +106,7 @@ def any_of(parts: Sequence[str]) -> Pattern[str]:
 
 
 TEXT_RULES: Tuple[Tuple[str, Pattern[str]], ...] = (
-    ("em-dash", re.compile("\u2014")),
+    ("em-dash", re.compile(r"\u2014|&(?:mdash|#0*8212|#[xX]0*2014);")),
     ("en-dash", re.compile("(?<![0-9])\u2013|\u2013(?![0-9])")),
     ("curly-quote", re.compile("[\u2018\u2019\u201c\u201d]")),
     ("ai-vocabulary", re.compile(r"\b(?:" + "|".join(VOCABULARY) + r")\b", re.IGNORECASE)),
