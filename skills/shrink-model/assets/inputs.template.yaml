@@ -1,0 +1,45 @@
+# Run inputs. Copy to runs/<name>/inputs.yaml and fill in.
+# Leave a value as null to have it discovered or defaulted, then record what was chosen.
+
+parent:
+  path: null              # local folder or file. Give this or repo, not both
+  repo: null              # repository id, such as org/model
+  revision: null          # exact commit hash. Required with repo
+  is_self: false          # true when the parent is the model running the skill
+
+target:
+  total_params: null      # cap on unique inference parameters, such as 35B
+  active_params: null     # cap on active parameters per token. MoE only
+  ratio: null             # alternative to the caps: parent total divided by child total
+  label: null             # size label to claim, applied only if measured counts support it
+
+priorities:
+  capabilities: [coding, reasoning, instruction following]
+  languages: [English]
+
+deployment:
+  batch: 1
+  context_tokens: 4096    # prompt plus generation
+  hardware: null          # discovered in phase 0
+  runtime: null           # chosen after the architecture is known
+  export_format: null
+
+machines:                 # discovered in phase 0, one entry per role
+  parent_inference: null
+  child_training: null
+  conversion: null
+  deployment: null
+
+budgets:                  # null means the default bound in SKILL.md applies
+  download_gb: null
+  disk_gb: null
+  pilot_steps: null
+  pilot_hours: null
+  pilots: null
+  full_run_tokens: null   # set at Gate C
+  full_run_hours: null
+
+permissions:
+  paid_compute: false
+  external_services: false
+  data_leaves_machine: false

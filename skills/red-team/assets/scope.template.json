@@ -1,0 +1,101 @@
+{
+  "_readme": [
+    "Copy this file to scope.json in the engagement folder and fill every empty field.",
+    "Take every value from the written authorization. The operator confirms the file before any testing.",
+    "Validate it with: python3 scripts/scope_check.py --scope scope.json --validate",
+    "Keys that start with an underscore are comments. Any other unknown key is an error.",
+    "out_of_scope always wins over in_scope.",
+    "A host name such as example.com covers that name only. *.example.com covers every name under it, but not example.com itself. This holds for both lists.",
+    "Host names are never resolved by the checker. Resolved addresses must be in ip_ranges to be in scope.",
+    "Run scripts/scope_check.py --list-techniques to see the technique classes."
+  ],
+  "schema_version": 1,
+  "engagement": {
+    "name": "",
+    "description": ""
+  },
+  "authorization": {
+    "_help": "Who authorized the testing, and where the written authorization is kept (document title, ticket or contract reference).",
+    "authorized_by": {
+      "name": "",
+      "role": "",
+      "contact": ""
+    },
+    "reference": ""
+  },
+  "window": {
+    "_help": "ISO 8601 with a time zone, for example 2030-01-07T09:00:00+00:00. Testing is allowed from start up to, but not including, end.",
+    "start": "",
+    "end": ""
+  },
+  "in_scope": {
+    "hostnames": [],
+    "ip_ranges": [],
+    "urls": [],
+    "cloud_accounts": [],
+    "repositories": [],
+    "artifacts": [],
+    "hardware": []
+  },
+  "out_of_scope": {
+    "hostnames": [],
+    "ip_ranges": [],
+    "urls": [],
+    "cloud_accounts": [],
+    "repositories": [],
+    "artifacts": [],
+    "hardware": []
+  },
+  "techniques": {
+    "_help": "A class must be in allowed and absent from forbidden. The six classes below are refused by the checker in every case. They are listed so the file states it plainly.",
+    "allowed": [],
+    "forbidden": [
+      "denial-of-service",
+      "detection-evasion",
+      "covert-exfiltration",
+      "evidence-destruction",
+      "social-engineering",
+      "physical-entry"
+    ]
+  },
+  "data_handling": {
+    "_help": "Edit the rules to match the authorization. retention says how long evidence is kept and how it is disposed of.",
+    "rules": [
+      "Collect the minimum evidence needed to prove each finding.",
+      "Do not open, copy or keep personal data or third-party data. Stop and report if it is encountered.",
+      "Redact passwords, keys and tokens in evidence and reports.",
+      "Keep all evidence inside the engagement folder."
+    ],
+    "evidence_location": "",
+    "retention": ""
+  },
+  "stop_conditions": [
+    "A target turns out to be outside the scope or owned by someone else.",
+    "Any sign of impact on a production service.",
+    "Personal data or third-party data is encountered.",
+    "The authorization is unclear or disputed.",
+    "The testing window closes."
+  ],
+  "emergency_contact": {
+    "_help": "Someone who can be reached during the testing window and can stop the test.",
+    "name": "",
+    "contact": ""
+  },
+  "_examples": {
+    "hostnames": ["example.com", "*.example.com"],
+    "ip_ranges": ["192.0.2.0/24", "2001:db8:10::/48", "198.51.100.7"],
+    "urls": ["https://app.example.com/api/"],
+    "cloud_accounts": [{"provider": "examplecloud", "id": "account-0001", "note": "staging account"}],
+    "repositories": ["https://git.example.com/team/service"],
+    "artifacts": [{"sha256": "<64 hexadecimal characters>", "description": "router firmware 1.2.3"}],
+    "hardware": [
+      {
+        "id": "SN-0001",
+        "description": "lab router on the test bench",
+        "operator_owned": true,
+        "restore_image_sha256": "<SHA-256 of a restore image that was verified to work>"
+      }
+    ],
+    "exclude_a_name_and_everything_under_it": ["payments.example.com", "*.payments.example.com"]
+  }
+}

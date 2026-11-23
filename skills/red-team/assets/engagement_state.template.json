@@ -1,0 +1,75 @@
+{
+  "_readme": [
+    "Copy this file to engagement_state.json in the engagement folder.",
+    "Update it after every step so the work can resume after an interruption.",
+    "It is a working summary. The scope file decides what is allowed and the log is the record of what was done.",
+    "Never store passwords, keys, tokens or personal data here. Point to a redacted evidence file instead."
+  ],
+  "schema_version": 1,
+  "engagement": "",
+  "scope_file": "scope.json",
+  "scope_sha256": "",
+  "log_file": "engagement_log.jsonl",
+  "log_head": "",
+  "updated": "",
+  "phase": "planning",
+  "_phases": ["planning", "passive-recon", "mapping", "hypotheses", "verification", "reporting", "stopped", "closed"],
+  "targets": [
+    {
+      "target": "",
+      "type": "",
+      "scope_result": "",
+      "scope_checked_at": "",
+      "resolved_addresses": [],
+      "status": "not started",
+      "notes": ""
+    }
+  ],
+  "findings": [
+    {
+      "id": "F-001",
+      "title": "",
+      "target": "",
+      "status": "hypothesis",
+      "_statuses": ["hypothesis", "verified", "rejected", "reported"],
+      "confidence": "low",
+      "_confidence_levels": ["low", "medium", "high", "confirmed"],
+      "severity": "",
+      "basis": "",
+      "evidence": [
+        {
+          "file": "",
+          "sha256": "",
+          "log_seq": 0,
+          "summary": ""
+        }
+      ],
+      "next_step": ""
+    }
+  ],
+  "open_questions": [
+    {
+      "question": "",
+      "asked_at": "",
+      "answer": "",
+      "answered_at": ""
+    }
+  ],
+  "approvals": [
+    {
+      "action": "",
+      "approved_at": "",
+      "operator_words": "",
+      "log_seq": 0
+    }
+  ],
+  "stops": [
+    {
+      "at": "",
+      "reason": "",
+      "operator_told_at": "",
+      "resolution": ""
+    }
+  ],
+  "next_actions": []
+}
