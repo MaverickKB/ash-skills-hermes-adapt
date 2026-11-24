@@ -56,6 +56,7 @@ def audit_receipt(doc: object, max_ttft_p99: Optional[float]) -> Dict[str, objec
         raise ValueError("'bursts' list is empty")
 
     by_level: Dict[int, List[dict]] = {}
+    lane_caps: Dict[int, object] = {}
     exact_mismatches: List[str] = []
     lockstep_bursts: List[str] = []
     nonoverlapping_bursts: List[str] = []
@@ -68,6 +69,9 @@ def audit_receipt(doc: object, max_ttft_p99: Optional[float]) -> Dict[str, objec
             raise ValueError("burst level must be positive")
         if len(streams) != level:
             raise ValueError(f"C{level} rep {rep + 1}: expected {level} streams, got {len(streams)}")
+        lane_cap = burst.get("lane_cap")
+        if lane_caps.setdefault(level, lane_cap) != lane_cap:
+            raise ValueError(f"C{level} mixes lane caps; audit separate sweeps for different caps")
 
         prompt_ids: List[str] = []
         submit_times: List[float] = []
@@ -126,7 +130,6 @@ def audit_receipt(doc: object, max_ttft_p99: Optional[float]) -> Dict[str, objec
         agg_tps = (decode_tokens / span) if span > 0 else 0.0
         by_level.setdefault(level, []).append({
             "rep": rep,
-            "lane_cap": burst.get("lane_cap"),
             "agg_tps": agg_tps,
             "per_stream_tps": statistics.mean(per_stream_rates) if per_stream_rates else 0.0,
             "ttfts": ttfts,
@@ -159,7 +162,7 @@ def audit_receipt(doc: object, max_ttft_p99: Optional[float]) -> Dict[str, objec
         entry: Dict[str, object] = {
             "level": lvl,
             "reps": len(reps),
-            "lane_cap": reps[0]["lane_cap"],
+            "lane_cap": lane_caps[lvl],
             "agg_decode_tps": round(med_agg, 2),
             "per_stream_tps": round(med_stream, 2),
             "ttft_p50_s": round(p50, 4),

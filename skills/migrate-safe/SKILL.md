@@ -39,7 +39,7 @@ python3 scripts/migration_check.py sqlite-test \
   --down migrations/0042_down.sql --assert-sql fixtures/assert.sql
 ```
 
-The sandbox records the seeded database and the result of the first forward migration. A repeat must preserve the first result, rollback must restore the seed, and reapplying must reproduce the first result. Each comparison checks the schema and each table's rows, including duplicate counts and SQLite value types, independent of scan order. Pass `--allow-non-idempotent` for DDL such as `ALTER TABLE ADD COLUMN` that raises on repeat. The repeat can raise an error only if it leaves the first result intact. Exits `0` on `MIGRATION: SAFE` and `1` on `MIGRATION: UNSAFE`.
+The sandbox enables foreign keys and checks for violations after each script, including scripts that temporarily disable enforcement. It denies named `ATTACH` targets, file exports through `VACUUM INTO`, and changes to SQLite storage directories. Plain `VACUUM` still runs on the temporary database. It records the seeded database and the result of the first forward migration. A repeat must preserve the first result, rollback must restore the seed, and reapplying must reproduce the first result. Each comparison checks the schema and each table's rows, including duplicate counts and SQLite value types, independent of scan order. Pass `--allow-non-idempotent` for DDL such as `ALTER TABLE ADD COLUMN` that raises on repeat. The repeat can raise an error only if it leaves the first result intact. Exits `0` on `MIGRATION: SAFE` and `1` on `MIGRATION: UNSAFE`.
 
 ## Safe rollout pattern (expand and contract)
 

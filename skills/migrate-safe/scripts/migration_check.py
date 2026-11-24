@@ -206,6 +206,36 @@ def run_asserts(conn: sqlite3.Connection, sql: str) -> Tuple[bool, str]:
     return True, "all assertions passed"
 
 
+def authorize_sqlite_action(
+    action: int,
+    name: Optional[str],
+    value: Optional[str],
+    _database: Optional[str],
+    _source: Optional[str],
+) -> int:
+    # SQLite uses an empty attachment target for an in-place VACUUM.
+    if action == sqlite3.SQLITE_ATTACH and name != "":
+        return sqlite3.SQLITE_DENY
+    if (
+        action == sqlite3.SQLITE_PRAGMA
+        and name is not None
+        and name.lower() in {"temp_store_directory", "data_store_directory"}
+        and value is not None
+    ):
+        return sqlite3.SQLITE_DENY
+    return sqlite3.SQLITE_OK
+
+
+def apply_sql(conn: sqlite3.Connection, sql: str) -> None:
+    conn.executescript(sql)
+    violation = conn.execute("PRAGMA foreign_key_check").fetchone()
+    if violation is not None:
+        table, row_id, parent, key = violation
+        raise sqlite3.IntegrityError(
+            f"foreign key violation in {table!r}, rowid {row_id!r} (references {parent!r}, key {key})"
+        )
+
+
 def run_sqlite_test(
     up_path: str,
     down_path: Optional[str],
@@ -226,13 +256,19 @@ def run_sqlite_test(
         conn = sqlite3.connect(db_path)
         conn.text_factory = lambda value: value.decode("utf-8", errors="surrogateescape")
         try:
+            conn.set_authorizer(authorize_sqlite_action)
+            conn.execute("PRAGMA foreign_keys=ON")
             if seed_sql:
-                conn.executescript(seed_sql)
+                try:
+                    apply_sql(conn, seed_sql)
+                except sqlite3.Error as exc:
+                    steps.append({"step": "seed", "ok": False, "detail": str(exc)})
+                    return {"verdict": "UNSAFE", "steps": steps}
                 steps.append({"step": "seed", "ok": True, "detail": "applied seed fixture"})
             before = database_state(conn)
 
             try:
-                conn.executescript(up_sql)
+                apply_sql(conn, up_sql)
                 steps.append({"step": "up-1", "ok": True, "detail": "forward migration succeeded"})
             except sqlite3.Error as exc:
                 steps.append({"step": "up-1", "ok": False, "detail": str(exc)})
@@ -250,7 +286,7 @@ def run_sqlite_test(
                     ok = False
 
             try:
-                conn.executescript(up_sql)
+                apply_sql(conn, up_sql)
             except sqlite3.Error as exc:
                 if not allow_non_idempotent:
                     steps.append({"step": "up-idempotent", "ok": False, "detail": f"second run failed ({exc})"})
@@ -265,7 +301,7 @@ def run_sqlite_test(
 
             if down_sql is not None:
                 try:
-                    conn.executescript(down_sql)
+                    apply_sql(conn, down_sql)
                     rollback = state_check(conn, before, "down")
                     steps.append(rollback)
                     if not rollback["ok"]:
@@ -275,7 +311,7 @@ def run_sqlite_test(
                     ok = False
 
                 try:
-                    conn.executescript(up_sql)
+                    apply_sql(conn, up_sql)
                     reapplied = state_check(conn, after_up, "up-after-down")
                     steps.append(reapplied)
                     if not reapplied["ok"]:

@@ -41,4 +41,6 @@ python3 scripts/concurrency_audit.py audit bursts.json --max-ttft-p99-s 1.5 --js
 
 Computes exact aggregate and per-stream decode rates, TTFT p50/p95/p99 (plus separate reasoning/answer TTFT when present), locates the saturation knee, rejects any `level >= 2` burst with duplicate prompts (`LOCKSTEP CONTAMINATION`), and fails on any solo-vs-burst `token_sha256` mismatch. Exit codes: `0` on `CONCURRENCY: VALID`, `1` on `CONCURRENCY: FAILED`, `2` on invalid receipt.
 
+Use the same lane cap for every repetition at a given offered concurrency. Audit separate sweeps when comparing caps at the same concurrency.
+
 Record submission and token times on the same clock. At the claimed level, every request must have been submitted before the earliest last token, so all requests were outstanding together for a positive interval. Queueing counts toward offered concurrency. A burst that falls short fails verification and is excluded from throughput and saturation estimates.

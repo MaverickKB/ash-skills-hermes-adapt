@@ -40,7 +40,7 @@ python3 scripts/prefill_plan.py verify-state cold_state.json resumed_state.json
 
 `verify-state` exits `0` on `MATCH`, `1` on `MISMATCH`, and `2` on missing or truncated hashes.
 
-`kv-budget` rounds each stream's context up to whole pages and counts how many complete pages fit in VRAM. Reported spill size and restore bandwidth use the number of remaining pages.
+`kv-budget` rounds each stream's context up to whole pages and counts how many complete pages fit in VRAM. Reported spill size and restore bandwidth use the number of remaining pages. The command exits `0` when the requested contexts fit and `1` when spill is required or VRAM has no headroom.
 
 ## Rules
 

@@ -27,6 +27,7 @@ python3 scripts/run_evals.py --base-url URL --model MODEL --judge-model JUDGE
 - it points at a `references/`, `scripts/` or `assets/` file that is not in the folder
 - any file holds a home directory path, an email address, or a public IP address
 - it ships stray files such as an old package or an editor's settings folder
+- a skill or group directory is itself a symlink, or an included symlink resolves outside its skill
 
 Validation reads the skill files as data. After reviewing the code, use `--run-scripts` on a directory of trusted skills to check that each bundled Python script answers `--help`.
 

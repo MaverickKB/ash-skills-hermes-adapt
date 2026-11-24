@@ -28,7 +28,7 @@ Print the canonical hazard matrix with `scripts/kernel_gate.py shapes` and test 
 
 ## 3. Run the tensor gate with automatic planted-fault control
 
-A JSON tensor supplies a flat `values` array. Its optional `shape` contains nonnegative integer dimensions whose product must equal the number of values. Omit `shape` for a vector or use `[]` for a single scalar. Inconsistent input exits 2 before comparison.
+A JSON tensor supplies a flat `values` array. Its optional `shape` contains nonnegative integer dimensions whose product must equal the number of values. Omit `shape` for a vector or use `[]` for a single scalar. For `i32`, each value must be an integer in the signed 32-bit range. Inconsistent input exits 2 before comparison.
 
 `scripts/kernel_gate.py` needs only Python 3.9+ (stdlib `struct` + `math`). It compares JSON or raw little-endian binary tensors (`f16`, `f32`, `f64`, `i32`), computes exact IEEE-754 ULP distance, checks `NaN`/`Inf` alignment, and automatically perturbs one element past the allowed budget to confirm the gate rejects it.
 

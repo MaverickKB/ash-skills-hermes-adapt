@@ -141,14 +141,14 @@ def cmd_kv_budget(args: argparse.Namespace) -> int:
     }
     print(f"layout: {layout}, {bpt:,} bytes/token, page={report['page_kib']} KiB ({args.page_tokens} tok/page)")
     print(f"headroom: {usable_gib:.3f} GiB -> {max_pages:,} pages ({max_tokens:,} tokens), max {max_resident_streams} resident stream(s) at ctx={args.context}")
-    if spill_gib > 0:
+    if spill_pages:
         print(f"KV BUDGET: SPILL NEEDED ({needed_gib:.3f} GiB for {args.streams} streams; {spill_pages} pages to spill, {spill_gib:.3f} GiB, {spill_bw:.2f} GiB/s to restore in {args.target_restore_s}s)")
     else:
         print(f"KV BUDGET: FITS ({needed_gib:.3f} / {usable_gib:.3f} GiB for {args.streams} streams)")
     if args.json_out:
         with open(args.json_out, "w", encoding="utf-8") as handle:
             json.dump(report, handle, indent=2)
-    return 0
+    return 1 if spill_pages else 0
 
 
 def require_sha(row: dict, key: str, label: str) -> str:

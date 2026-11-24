@@ -1,0 +1,154 @@
+{
+  "baseline": "bf16",
+  "port": 8080,
+  "health_url": "http://127.0.0.1:{port}/v1/models",
+  "startup_timeout_s": 180,
+  "server_cmd": [
+    "tensorfold",
+    "serve",
+    "{model_path}",
+    "--context",
+    "32768",
+    "--max-inflight",
+    "1",
+    "--no-drafts",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "{port}"
+  ],
+  "quants": [
+    {
+      "quant": "bf16",
+      "quant_family": "bf16",
+      "model_path": "checkpoints/model-bf16",
+      "bpw": 16.0,
+      "size_gib": 60.0,
+      "vram_gib": 64.5,
+      "kv_quant": "bf16",
+      "engine": "tensorfold",
+      "extra_args": ["--kv-cache", "bf16"]
+    },
+    {
+      "quant": "modelopt-fp8",
+      "quant_family": "fp8",
+      "model_path": "checkpoints/model-fp8",
+      "bpw": 8.2,
+      "size_gib": 30.8,
+      "vram_gib": 34.8,
+      "kv_quant": "bf16",
+      "engine": "tensorfold",
+      "extra_args": ["--kv-cache", "bf16"]
+    },
+    {
+      "quant": "mlx-q8g64",
+      "quant_family": "mlx",
+      "model_path": "checkpoints/model-mlx-q8g64",
+      "bpw": 8.5,
+      "size_gib": 31.9,
+      "vram_gib": 35.9,
+      "kv_quant": "bf16",
+      "engine": "tensorfold",
+      "extra_args": ["--kv-cache", "bf16"]
+    },
+    {
+      "quant": "mlx-q6g64",
+      "quant_family": "mlx",
+      "model_path": "checkpoints/model-mlx-q6g64",
+      "bpw": 6.5,
+      "size_gib": 24.4,
+      "vram_gib": 28.2,
+      "kv_quant": "bf16",
+      "engine": "tensorfold",
+      "extra_args": ["--kv-cache", "bf16"]
+    },
+    {
+      "quant": "mlx-q5g64",
+      "quant_family": "mlx",
+      "model_path": "checkpoints/model-mlx-q5g64",
+      "bpw": 5.5,
+      "size_gib": 20.6,
+      "vram_gib": 24.4,
+      "kv_quant": "bf16",
+      "engine": "tensorfold",
+      "extra_args": ["--kv-cache", "bf16"]
+    },
+    {
+      "quant": "modelopt-nvfp4",
+      "quant_family": "nvfp4",
+      "model_path": "checkpoints/model-nvfp4",
+      "bpw": 4.55,
+      "size_gib": 17.1,
+      "vram_gib": 20.8,
+      "kv_quant": "bf16",
+      "engine": "tensorfold",
+      "extra_args": ["--kv-cache", "bf16"]
+    },
+    {
+      "quant": "mlx-q4g32",
+      "quant_family": "mlx",
+      "model_path": "checkpoints/model-mlx-q4g32",
+      "bpw": 5.0,
+      "size_gib": 18.8,
+      "vram_gib": 22.5,
+      "kv_quant": "bf16",
+      "engine": "tensorfold",
+      "extra_args": ["--kv-cache", "bf16"]
+    },
+    {
+      "quant": "mlx-q4g64",
+      "quant_family": "mlx",
+      "model_path": "checkpoints/model-mlx-q4g64",
+      "bpw": 4.5,
+      "size_gib": 16.9,
+      "vram_gib": 20.6,
+      "kv_quant": "bf16",
+      "engine": "tensorfold",
+      "extra_args": ["--kv-cache", "bf16"]
+    },
+    {
+      "quant": "mlx-q4g64+kv-fp8",
+      "quant_family": "mlx",
+      "model_path": "checkpoints/model-mlx-q4g64",
+      "bpw": 4.5,
+      "size_gib": 16.9,
+      "vram_gib": 18.9,
+      "kv_quant": "fp8",
+      "engine": "tensorfold",
+      "extra_args": ["--kv-cache", "fp8"]
+    },
+    {
+      "quant": "mlx-q4g128",
+      "quant_family": "mlx",
+      "model_path": "checkpoints/model-mlx-q4g128",
+      "bpw": 4.25,
+      "size_gib": 15.9,
+      "vram_gib": 19.6,
+      "kv_quant": "bf16",
+      "engine": "tensorfold",
+      "extra_args": ["--kv-cache", "bf16"]
+    },
+    {
+      "quant": "mlx-q3g64",
+      "quant_family": "mlx",
+      "model_path": "checkpoints/model-mlx-q3g64",
+      "bpw": 3.5,
+      "size_gib": 13.1,
+      "vram_gib": 16.8,
+      "kv_quant": "bf16",
+      "engine": "tensorfold",
+      "extra_args": ["--kv-cache", "bf16"]
+    },
+    {
+      "quant": "mlx-q2g64",
+      "quant_family": "mlx",
+      "model_path": "checkpoints/model-mlx-q2g64",
+      "bpw": 2.5,
+      "size_gib": 9.4,
+      "vram_gib": 13.0,
+      "kv_quant": "bf16",
+      "engine": "tensorfold",
+      "extra_args": ["--kv-cache", "bf16"]
+    }
+  ]
+}

@@ -138,8 +138,16 @@ def overlap_notes(descriptions, threshold=0.34):
     return notes
 
 
+def inside_skill(path: str, skill_root: str) -> bool:
+    return os.path.commonpath((skill_root, os.path.realpath(path))) == skill_root
+
+
 def check_skill(folder, problems, run_scripts=False, strict_prose=False, descriptions=None):
     name = os.path.basename(folder.rstrip(os.sep))
+    if os.path.islink(folder):
+        problems.append(f"{name}: skill directory is a symlink")
+        return
+    skill_root = os.path.realpath(folder)
     skill_md = os.path.join(folder, "SKILL.md")
     if not os.path.isfile(skill_md):
         problems.append(f"{name}: no SKILL.md")
@@ -149,11 +157,19 @@ def check_skill(folder, problems, run_scripts=False, strict_prose=False, descrip
         for stray in sorted(set(dirs) & STRAY_DIRS):
             problems.append(f"{os.path.relpath(os.path.join(root, stray), os.path.dirname(folder))}: stray directory")
         dirs[:] = [d for d in dirs if d not in STRAY_DIRS]
+        for directory in dirs[:]:
+            path = os.path.join(root, directory)
+            if not inside_skill(path, skill_root):
+                rel = os.path.relpath(path, os.path.dirname(folder))
+                problems.append(f"{rel}: symlink points outside the skill directory")
+                dirs.remove(directory)
         for filename in files:
             path = os.path.join(root, filename)
             rel = os.path.relpath(path, os.path.dirname(folder))
             if filename in STRAY_NAMES or filename.endswith(STRAY_SUFFIXES):
                 problems.append(f"{rel}: stray file")
+            elif not inside_skill(path, skill_root):
+                problems.append(f"{rel}: symlink points outside the skill directory")
             elif filename.endswith(TEXT_SUFFIXES):
                 texts[rel] = check_text_file(path, rel, problems, strict_prose)
 
@@ -198,11 +214,12 @@ def check_skill(folder, problems, run_scripts=False, strict_prose=False, descrip
                 problems.append(f"{rel}: over {CONTENTS_AFTER_LINES} lines with no '## Contents' list")
 
     scripts = os.path.join(folder, "scripts")
-    if run_scripts and os.path.isdir(scripts):
+    if run_scripts and os.path.isdir(scripts) and inside_skill(scripts, skill_root):
         for filename in sorted(os.listdir(scripts)):
-            if not filename.endswith(".py"):
+            source = os.path.join(scripts, filename)
+            if not filename.endswith(".py") or not inside_skill(source, skill_root):
                 continue
-            result = subprocess.run([sys.executable, os.path.join(scripts, filename), "--help"],
+            result = subprocess.run([sys.executable, source, "--help"],
                                     capture_output=True, text=True, timeout=60)
             if result.returncode != 0 or not result.stdout.strip():
                 problems.append(f"{name}/scripts/{filename}: --help did not exit 0 with usage text")
@@ -225,7 +242,7 @@ def main(argv=None):
         os.path.join(args.skills_dir, entry) for entry in os.listdir(args.skills_dir)
         if os.path.isdir(os.path.join(args.skills_dir, entry)) and not entry.startswith("."))
     group = os.path.join(args.skills_dir, "tensorfold")
-    if group in folders and not os.path.isfile(os.path.join(group, "SKILL.md")):
+    if group in folders and not os.path.islink(group) and not os.path.isfile(os.path.join(group, "SKILL.md")):
         grouped = [
             os.path.join(group, entry) for entry in sorted(os.listdir(group))
             if not entry.startswith(".") and os.path.isdir(os.path.join(group, entry))

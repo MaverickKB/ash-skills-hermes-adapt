@@ -77,6 +77,11 @@ Keep the closing message short. For each cell give the rate before and after, wi
 
 | Task or measured bottleneck | Load |
 | --- | --- |
+| Run the combined 7-gate local speedup loop with tamper-checked receipts | `tensorfold-speed-hunt` |
+| Parse served traces (`nsys`, `FZ_ROUND_TIMES`, JSON), rooflines and Amdahl ceilings | `critical-path-xray` |
+| Guard untouched CUDA/Metal kernels against register, spill or SASS drift | `sass-and-air-diff` |
+| Block dead-end repeats, score mirrored `B,C,C,B` A/B runs and track `OWED_PORT` debt | `optimization-ledger` |
+| Kill between-pass host syncs, graph recaptures and serialized drafting/grammar stalls | `graph-and-dispatch-surgeon` |
 | Bring up a model family or verify offline token-hash receipts | `model-bringup` |
 | Check Metal, CUDA, or CPU kernel outputs and edge shapes | `kernel-contract` |
 | Improve single-stream decode throughput | `one-stream-lanes` |
@@ -85,3 +90,7 @@ Keep the closing message short. For each cell give the rate before and after, wi
 | Compare responses and available token bytes across builds | `output-parity` |
 | Measure baseline noise and compare two benchmark commands | `fair-bench` |
 | Review a claimed speedup in a fresh session | `speedup-referee` |
+| Solve TensorFold VRAM fit, KV spill, SSD experts and quant tier before pulling | `vram-alchemist` |
+| Compare all TensorFold quants side by side on tool calling, context cliffs and Pareto frontier | `quant-autopsy` |
+| Verify tokenizer parity, adapt and gate a companion drafter (`--drafter`) | `drafter-forge` |
+| Profile `--fsr-route-trace` MoE routing, `--ssd-experts` residency and router drift | `moe-xray` |

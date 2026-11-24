@@ -14,6 +14,8 @@ read back and compared with the folder before the script reports success.
   build.py NAME ...     build the named skills
   build.py --check      build to a temp folder and compare with ./dist
 """
+from __future__ import annotations
+
 import argparse
 import filecmp
 import os
@@ -27,29 +29,41 @@ SKIP_DIRS = {".claude", "__pycache__", ".git"}
 FIXED_TIME = (2026, 1, 1, 0, 0, 0)
 
 
-def skill_files(folder):
-    found = []
+def source_path(folder: str, root: str, name: str) -> str:
+    path = os.path.join(root, name)
+    target = os.path.realpath(path)
+    if os.path.commonpath((folder, target)) != folder:
+        rel = os.path.relpath(path, folder)
+        raise RuntimeError(f"{os.path.basename(folder)}/{rel}: symlink points outside the skill directory")
+    return target
+
+
+def skill_files(folder: str) -> dict[str, str]:
+    folder = os.path.realpath(folder)
+    found = {}
     for root, dirs, files in os.walk(folder):
         dirs[:] = sorted(d for d in dirs if d not in SKIP_DIRS)
+        for directory in dirs:
+            source_path(folder, root, directory)
         for filename in sorted(files):
             if filename not in SKIP_NAMES and not filename.endswith((".pyc", ".skill")):
-                found.append(os.path.relpath(os.path.join(root, filename), folder))
-    return sorted(found)
+                source = source_path(folder, root, filename)
+                found[os.path.relpath(os.path.join(root, filename), folder)] = source
+    return dict(sorted(found.items()))
 
 
-def write_zip(folder, name, target):
-    files = skill_files(folder)
+def write_zip(files: dict[str, str], name: str, target: str) -> int:
     with zipfile.ZipFile(target, "w", zipfile.ZIP_DEFLATED) as archive:
-        for rel in files:
+        for rel, source in files.items():
             info = zipfile.ZipInfo(f"{name}/{rel.replace(os.sep, '/')}", FIXED_TIME)
             info.compress_type = zipfile.ZIP_DEFLATED
             info.external_attr = 0o644 << 16
-            with open(os.path.join(folder, rel), "rb") as handle:
+            with open(source, "rb") as handle:
                 archive.writestr(info, handle.read())
     with zipfile.ZipFile(target) as archive:
         packed = sorted(entry[len(name) + 1:] for entry in archive.namelist())
-        for rel in files:
-            with open(os.path.join(folder, rel), "rb") as handle:
+        for rel, source in files.items():
+            with open(source, "rb") as handle:
                 if archive.read(f"{name}/{rel.replace(os.sep, '/')}") != handle.read():
                     raise RuntimeError(f"{name}: {rel} differs inside the package")
     if packed != [rel.replace(os.sep, "/") for rel in files]:
@@ -78,17 +92,17 @@ def reference_order(skill_text, references):
     return sorted(references, key=lambda rel: (position[rel], rel))
 
 
-def write_flat(folder, name, target):
-    with open(os.path.join(folder, "SKILL.md"), encoding="utf-8") as handle:
+def write_flat(files: dict[str, str], name: str, target: str) -> int:
+    with open(files["SKILL.md"], encoding="utf-8") as handle:
         skill_text = handle.read()
     body = re.sub(r"\A---\n.*?\n---\n", "", skill_text, count=1, flags=re.S).strip()
-    extras = [rel for rel in skill_files(folder)
+    extras = [rel for rel in files
               if rel.endswith(".md") and rel != "SKILL.md" and rel.split(os.sep)[0] in ("references", "assets")]
     parts = [body]
     if extras:
         parts.append("---\n\n# Reference files\n\nThe sections below are the files the text above points to, in one place.")
     for rel in reference_order(skill_text, extras):
-        with open(os.path.join(folder, rel), encoding="utf-8") as handle:
+        with open(files[rel], encoding="utf-8") as handle:
             content = handle.read().strip()
         label = rel.replace(os.sep, "/")
         parts.append(f"## File: `{label}`\n\n{demote(content, 2)}")
@@ -97,7 +111,7 @@ def write_flat(folder, name, target):
     with open(target, encoding="utf-8") as handle:
         flat = handle.read()
     for rel in extras:
-        with open(os.path.join(folder, rel), encoding="utf-8") as handle:
+        with open(files[rel], encoding="utf-8") as handle:
             for line in handle.read().splitlines():
                 if line.strip() and not line.startswith("#") and line.strip() not in flat:
                     raise RuntimeError(f"{name}: a line of {rel} is missing from the single-file copy")
@@ -107,6 +121,8 @@ def write_flat(folder, name, target):
 def discover_skills(skills_dir):
     roots = [skills_dir]
     group = os.path.join(skills_dir, "tensorfold")
+    if os.path.islink(group):
+        raise RuntimeError("tensorfold: skill group directory is a symlink")
     if os.path.isdir(group) and not os.path.isfile(os.path.join(group, "SKILL.md")):
         roots.append(group)
     folders = {}
@@ -115,6 +131,8 @@ def discover_skills(skills_dir):
             folder = os.path.join(root, name)
             if not os.path.isfile(os.path.join(folder, "SKILL.md")):
                 continue
+            if os.path.islink(folder):
+                raise RuntimeError(f"{name}: skill directory is a symlink")
             if name in folders:
                 raise RuntimeError(f"{folder}: duplicate skill folder name '{name}'")
             folders[name] = folder
@@ -123,15 +141,19 @@ def discover_skills(skills_dir):
 
 def build(skills_dir, dist, names):
     folders = discover_skills(skills_dir)
-    os.makedirs(dist, exist_ok=True)
-    built = []
+    sources = {}
     for name in names:
         if name not in folders:
             raise RuntimeError(f"{name}: no SKILL.md found under {skills_dir}")
-        folder = folders[name]
-        files = write_zip(folder, name, os.path.join(dist, f"{name}.skill"))
-        references = write_flat(folder, name, os.path.join(dist, f"{name}.md"))
-        built.append((name, files, references))
+        sources[name] = skill_files(folders[name])
+
+    os.makedirs(dist, exist_ok=True)
+    built = []
+    for name in names:
+        files = sources[name]
+        count = write_zip(files, name, os.path.join(dist, f"{name}.skill"))
+        references = write_flat(files, name, os.path.join(dist, f"{name}.md"))
+        built.append((name, count, references))
     return built
 
 

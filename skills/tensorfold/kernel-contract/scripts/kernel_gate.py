@@ -23,6 +23,8 @@ from pathlib import Path
 from typing import Dict, List, Optional, Sequence, Tuple
 
 DTYPE_FMT = {"f16": "e", "f32": "f", "f64": "d", "i32": "i"}
+I32_MIN = -(2**31)
+I32_MAX = 2**31 - 1
 FLOAT_INT_FMT = {"f16": ("<e", "<H", 16), "f32": ("<f", "<I", 32), "f64": ("<d", "<Q", 64)}
 
 HAZARD_SHAPES = {
@@ -92,6 +94,17 @@ class Tensor:
         return Tensor(self.dtype, self.shape, values, raw)
 
 
+def parse_i32_values(values: Sequence[object]) -> List[int]:
+    integers = []
+    for index, value in enumerate(values):
+        if isinstance(value, bool) or not isinstance(value, (int, float)):
+            raise ValueError(f"values[{index}] must be a signed 32-bit integer")
+        if not I32_MIN <= value <= I32_MAX or (isinstance(value, float) and not value.is_integer()):
+            raise ValueError(f"values[{index}] must be a signed 32-bit integer")
+        integers.append(int(value))
+    return integers
+
+
 def load_tensor(json_path: Optional[str], bin_path: Optional[str], dtype_arg: Optional[str]) -> Tensor:
     if json_path:
         doc = json.loads(Path(json_path).read_text(encoding="utf-8"))
@@ -103,8 +116,8 @@ def load_tensor(json_path: Optional[str], bin_path: Optional[str], dtype_arg: Op
         values = doc["values"]
         shape = doc.get("shape", [len(values)])
         try:
-            vals = [float(x) if dtype != "i32" else int(x) for x in values]
-            return Tensor(dtype, shape, vals)
+            parsed = parse_i32_values(values) if dtype == "i32" else [float(value) for value in values]
+            return Tensor(dtype, shape, parsed)
         except (TypeError, ValueError, OverflowError) as exc:
             raise ValueError(f"{json_path}: {exc}") from exc
     if bin_path:
@@ -223,7 +236,8 @@ def planted_fault_control(
                 return False, f"budget ({budget}) overflows float range; tolerance is uncheckably loose"
             fault = candidate_val
     else:
-        fault = int(orig) + 1
+        integer = int(orig)
+        fault = integer - 1 if integer == I32_MAX else integer + 1
     perturbed = reference.with_value(target_idx, fault)
     check = evaluate_tensors(reference, perturbed, bit_exact, max_ulp, atol, rtol)
     if check["passed"]:

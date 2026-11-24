@@ -24,4 +24,4 @@ Run the [reply gate](scripts/gate.py) to catch unsupported claims and missing ve
 
 ## Pair it with
 
-[Prove it](../prove-it/README.md) · [Diagnosing bugs](../diagnosing-bugs/README.md)
+[Prove it](../prove-it/README.md) · [Diagnosing bugs](../diagnosing-bugs/README.md) · [Control vector forge](../control-vector-forge/README.md)
