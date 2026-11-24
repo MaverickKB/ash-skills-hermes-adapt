@@ -19,14 +19,32 @@ Fork: https://github.com/MaverickKB/skills
 
 ```bash
 hermes skills tap add MaverickKB/skills
-hermes skills install MaverickKB/skills/skills/mythos-mode
+hermes skills install MaverickKB/skills/skills/prove-it
 ```
 
 Direct install without a tap:
 
 ```bash
-hermes skills install MaverickKB/skills/skills/mythos-mode
+hermes skills install MaverickKB/skills/skills/prove-it
 ```
+
+### Hub scan
+
+`hermes skills install` scans every skill before installing. The scanner rates `mythos-mode` dangerous because `scripts/gate.py` and its tests contain the destructive-command and prompt-injection patterns the gate is built to detect. The scanner cannot tell a defensive regex from a payload, and the hub refuses a dangerous verdict even with `--force`.
+
+| Verdict | Skills | Hub install |
+| --- | --- | --- |
+| safe | most of the collection | yes |
+| caution | break-it, breakthrough-architect, diagnosing-bugs, distill-foundry, handover, prove-it, ship-check, slopchop, vram-alchemist | yes |
+| dangerous | mythos-mode | no; copy manually |
+
+Install `mythos-mode` by copying its folder into the profile skills directory:
+
+```bash
+cp -R skills/mythos-mode ~/.hermes/profiles/<profile>/skills/
+```
+
+The installed copy loads through `skill_view` with its Hermes metadata, and the gate runs from the profile path.
 
 List the tap and installed skills:
 
