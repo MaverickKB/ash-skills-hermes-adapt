@@ -1,6 +1,6 @@
 # TensorFold and inference
 
-TensorFold groups sixteen inference skills. Install each one by its own name, such as `--skill tensorfold-speed-hunt` or `--skill kernel-contract`.
+TensorFold groups eighteen inference skills. Install each one by its own name, such as `--skill breakthrough-architect` or `--skill tensorfold-speed-hunt`.
 
 Start with the [performance playbook](../mythos-mode/references/inference-performance.md) when you need to find where a served request spends its time. It comes with Mythos Mode, so you can use it after installing that skill on its own.
 
@@ -11,7 +11,9 @@ this served workload, then choose a specialist based on the measured bottleneck.
 
 | What you need | Open |
 | --- | --- |
+| Discover 2x-10x silicon breakthroughs, run 10-minute kill-probes and autotune on chip | [Breakthrough architect](breakthrough-architect/README.md) |
 | Run the combined 7-gate local TensorFold optimization loop | [TensorFold speed hunt](tensorfold-speed-hunt/README.md) |
+| Model MCDMA/NVLink/PCIe collectives and gate multi-rank reduction parity | [Fabric and multi-rank](fabric-and-multi-rank/README.md) |
 | Trace GPU vs host vs idle shares, rooflines and Amdahl bounds | [Critical path X-ray](critical-path-xray/README.md) |
 | Guard untouched kernels against SASS, register and spill regressions | [SASS and AIR diff](sass-and-air-diff/README.md) |
 | Block repeat dead ends, score mirrored A/B runs and track owed ports | [Optimization ledger](optimization-ledger/README.md) |

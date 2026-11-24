@@ -77,7 +77,9 @@ Keep the closing message short. For each cell give the rate before and after, wi
 
 | Task or measured bottleneck | Load |
 | --- | --- |
+| Hunt 2x-10x physics gaps, run 10-minute kill-probes and autotune on target silicon | `breakthrough-architect` |
 | Run the combined 7-gate local speedup loop with tamper-checked receipts | `tensorfold-speed-hunt` |
+| Model multi-device collectives (NVLink, PCIe, MCDMA) and gate multi-rank parity | `fabric-and-multi-rank` |
 | Parse served traces (`nsys`, `FZ_ROUND_TIMES`, JSON), rooflines and Amdahl ceilings | `critical-path-xray` |
 | Guard untouched CUDA/Metal kernels against register, spill or SASS drift | `sass-and-air-diff` |
 | Block dead-end repeats, score mirrored `B,C,C,B` A/B runs and track `OWED_PORT` debt | `optimization-ledger` |

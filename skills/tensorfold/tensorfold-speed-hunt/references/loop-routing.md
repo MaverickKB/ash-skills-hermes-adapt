@@ -19,6 +19,8 @@ How `tensorfold-speed-hunt` selects the right TensorFold specialist from served 
 | Slow TTFT, long-context cliff or KV pool spill | `prefill-and-kv` + `vram-alchemist` | Equal-work chunking, radix prefix reuse, paged KV and host/SSD spill |
 | MoE router skew, `--ssd-experts` misses or quant router drift | `moe-xray` + `quant-autopsy` | Hot-expert residency, JSD router checks, Pareto quant selection |
 | Concurrent p99 TTFT spike or batch scaling knee | `serving-concurrency` | Shared-round continuous batching, lane caps, cached-client queueing |
+| Multi-GPU or peer-Mac collective overhead (`--parallel`, MCDMA, NCCL) | `fabric-and-multi-rank` | Link latency modeling (TP vs EP vs PP) and deterministic fixed-order reduction parity |
+| Need a 2x-10x architectural leap or chip-specific parameter search | `breakthrough-architect` | 4 silicon headroom ratios, 10-minute kill-probes, on-silicon `autotune` |
 | New model family or checkpoint format | `model-bringup` | Safetensors contract and layer-by-layer FP64 parity ladder |
 
 ## 2. Cross-layer combinations that stack

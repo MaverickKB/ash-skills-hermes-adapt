@@ -2,7 +2,7 @@
 
 ![A red laser traces the profile of a black basalt lion.](assets/mythos-mode.webp)
 
-I want my agent to show me the bug it reproduced, the test that caught it, and the runs behind its speedup claim. These 38 skills give you a way to ask for that work.
+I want my agent to show me the bug it reproduced, the test that caught it, and the runs behind its speedup claim. These 40 skills give you a way to ask for that work.
 
 [Install](#install) · [Try Mythos Mode](#see-mythos-mode-in-action) · [Pick a workflow](#pick-a-workflow) · [Browse the skills](#skill-directory) · [Supported agents](#supported-agents)
 
@@ -42,7 +42,7 @@ The gate reports `GATE: FAIL (3 problems)`. It asks which checks ran, what remai
 | "It only fails on CI." | [Diagnosing bugs](skills/diagnosing-bugs/README.md) &rarr; [Prove it](skills/prove-it/README.md) | A reproducer and a test that catches the original failure. |
 | "This change touches a lot of callers." | [Blast radius](skills/blast-radius/README.md) &rarr; [Ship check](skills/ship-check/README.md) | A map of what depends on your changes and a verdict on the staged snapshot. |
 | "Decode is faster. Can we ship it?" | [Output parity](skills/tensorfold/output-parity/README.md) &rarr; [Fair bench](skills/fair-bench/README.md) &rarr; [Speedup referee](skills/tensorfold/speedup-referee/README.md) | A parity verdict, repeat timings, and an independent review of the speedup claim. |
-| "Push TensorFold speed locally without regressions." | [TensorFold speed hunt](skills/tensorfold/tensorfold-speed-hunt/README.md) ([Critical path X-ray](skills/tensorfold/critical-path-xray/README.md) &rarr; [Optimization ledger](skills/tensorfold/optimization-ledger/README.md) &rarr; [SASS and AIR diff](skills/tensorfold/sass-and-air-diff/README.md) &rarr; [Speedup referee](skills/tensorfold/speedup-referee/README.md)) | A tamper-checked 7-gate loop from served trace to fresh-session confirmed speedup and owed-port queue. |
+| "Push TensorFold speed locally without regressions." | [Breakthrough architect](skills/tensorfold/breakthrough-architect/README.md) &rarr; [TensorFold speed hunt](skills/tensorfold/tensorfold-speed-hunt/README.md) ([Critical path X-ray](skills/tensorfold/critical-path-xray/README.md) &rarr; [Optimization ledger](skills/tensorfold/optimization-ledger/README.md) &rarr; [SASS and AIR diff](skills/tensorfold/sass-and-air-diff/README.md) &rarr; [Speedup referee](skills/tensorfold/speedup-referee/README.md)) | Stage 0 physics gaps, 10-minute kill-probes and on-silicon autotuning feeding a tamper-checked 7-gate landing loop. |
 | "Which quant fits my GPU and won't break coding agents?" | [VRAM alchemist](skills/tensorfold/vram-alchemist/README.md) &rarr; [Quant autopsy](skills/tensorfold/quant-autopsy/README.md) &rarr; [Local coder overclock](skills/local-coder-overclock/README.md) | Exact TensorFold VRAM fit and serve flags, an all-quant Pareto scorecard, and verified tool calling and prefix caching. |
 
 ## Skill directory
@@ -81,7 +81,9 @@ If you need to find where a served request spends its time, start with the [Tens
 
 | Skill | What it does | When to use it |
 | --- | --- | --- |
+| [`breakthrough-architect`](skills/tensorfold/breakthrough-architect/README.md) | Quantify silicon physics gaps, run 10-minute kill-probes, and autotune schedules on chip. | You want 2x-10x architectural leaps before entering the landing loop. |
 | [`tensorfold-speed-hunt`](skills/tensorfold/tensorfold-speed-hunt/README.md) | Drive the 7-gate closed-loop TensorFold speedup workflow with hashed receipts. | You're running an end-to-end local TensorFold optimization hunt. |
+| [`fabric-and-multi-rank`](skills/tensorfold/fabric-and-multi-rank/README.md) | Model NVLink/PCIe/MCDMA collectives and gate multi-rank deterministic parity. | You're scaling TensorFold across multiple GPUs or peer Macs. |
 | [`critical-path-xray`](skills/tensorfold/critical-path-xray/README.md) | Parse served traces into GPU/host/idle shares, rooflines, and Amdahl bounds. | You need to find the real #1 bottleneck and verify kernel dispatch. |
 | [`sass-and-air-diff`](skills/tensorfold/sass-and-air-diff/README.md) | Diff compiled SASS/ptxas/AIR binaries to catch untouched-kernel register and spill drift. | You edited a CUDA or Metal kernel or shared header before benchmarking. |
 | [`optimization-ledger`](skills/tensorfold/optimization-ledger/README.md) | Block repeat dead ends, score mirrored `B,C,C,B` A/B runs, and track owed ports. | You want multi-session experiment memory and thermal-checked A/B verdicts. |

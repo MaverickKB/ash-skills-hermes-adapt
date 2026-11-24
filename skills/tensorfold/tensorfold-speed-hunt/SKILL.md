@@ -18,6 +18,8 @@ Isolated microbenchmarks, unlogged dead ends, silent untouched-kernel spills and
 
 ## The 7-gate closed loop
 
+Need a 2x-10x step-function leap before starting a build? Run Stage 0 in `breakthrough-architect` (`physics-gap`, 10-minute `probe-card`, or chip-specific `autotune`) and graduate the winning mechanism into gate 1 below.
+
 Initialize a run once per optimization candidate:
 
 ```bash
@@ -30,7 +32,7 @@ python3 scripts/loop_driver.py init \
 
 Then clear each gate in order (`status` always prints the next exact command):
 
-1. **`xray` (`critical-path-xray`):** Parse the real served trace, confirm GPU vs host vs idle wall split and Amdahl ceiling, and attach `notes/xray.json` (`loop_driver.py` routes you automatically to `graph-and-dispatch-surgeon`, `one-stream-lanes`, or `kernel-contract`).
+1. **`xray` (`critical-path-xray`):** Parse the real served trace, confirm GPU vs host vs idle wall split and Amdahl ceiling, and attach `notes/xray.json`. The router sends host or idle bottlenecks to `graph-and-dispatch-surgeon` and dominant collective kernels to `fabric-and-multi-rank`. Other kernels route to `one-stream-lanes` or `kernel-contract`.
 2. **`preflight` (`optimization-ledger`):** Check `optimization-ledger.jsonl` and built-in dead-end archetypes so you never repeat a recorded loss without a changed assumption; attach `notes/preflight.json`.
 3. **`build` (routed specialist):** Implement on an isolated branch using the routed specialist (`kernel-contract`, `graph-and-dispatch-surgeon`, `one-stream-lanes`, `prefill-and-kv`, `serving-concurrency`, `drafter-forge` or `moe-xray`) and record `--branch`, `--mechanism` and `--cand-binary-sha256`.
 4. **`binary_gate` (`sass-and-air-diff`):** Diff compiled `ptxas`/`cuobjdump` SASS or Metal AIR snapshots to prove untouched kernels stayed identical with zero new spills; attach `notes/binary_gate.json` (or `--not-applicable --notes ...` only if no GPU kernels/headers changed).

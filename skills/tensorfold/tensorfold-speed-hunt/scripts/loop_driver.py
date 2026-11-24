@@ -39,11 +39,17 @@ from typing import Dict, List, Optional, Sequence
 
 STAGES = ("xray", "preflight", "build", "binary_gate", "parity_gate", "bench_gate", "referee")
 SHA256_RE = re.compile(r"[0-9a-fA-F]{64}\Z")
+KERNEL_WORD_BOUNDARY = re.compile(r"(?<=[a-z0-9])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])")
+COLLECTIVE_KERNEL_RE = re.compile(
+    r"(?:^|[^a-z0-9])(?:nccl|rccl|mcdma|all[-_ ]?reduce|all[-_ ]?gather|"
+    r"reduce[-_ ]?scatter|all[-_ ]?to[-_ ]?all)(?=$|[^a-z0-9])",
+    re.IGNORECASE,
+)
 
 NEXT_HINTS: Dict[str, str] = {
     "xray": "Load `critical-path-xray` and run `xray_trace.py audit <trace> --chip <chip> --json notes/xray.json`, then `attach --stage xray --receipt notes/xray.json`.",
     "preflight": "Load `optimization-ledger` and run `ledger.py preflight --ledger notes/optimization-ledger.jsonl --mechanism <name> --json notes/preflight.json`, then `attach --stage preflight --receipt notes/preflight.json`.",
-    "build": "Load the routed specialist (`kernel-contract`, `graph-and-dispatch-surgeon`, `one-stream-lanes`, `prefill-and-kv`, `serving-concurrency`, `drafter-forge` or `moe-xray`), implement on a branch, and run `attach --stage build ...`.",
+    "build": "Load the routed specialist, implement on a branch, and run `attach --stage build ...`.",
     "binary_gate": "Load `sass-and-air-diff` and run `binary_gate.py diff base.json cand.json --allow-changed <kernel> --forbid-new-spills --json notes/binary_gate.json`, then `attach --stage binary_gate --receipt notes/binary_gate.json`.",
     "parity_gate": "Load `output-parity` and run `parity.py compare ... --logprobs --json notes/parity.json`, then `attach --stage parity_gate --receipt notes/parity.json`.",
     "bench_gate": "Load `optimization-ledger` and run `ledger.py score-ab notes/ab_receipt.json --json notes/ab_verdict.json`, then `attach --stage bench_gate --receipt notes/ab_verdict.json`.",
@@ -90,7 +96,11 @@ def route_specialist_from_xray(xray: Dict[str, object]) -> str:
         return "graph-and-dispatch-surgeon"
     kernels = xray.get("kernels") or []
     if kernels and isinstance(kernels[0], dict):
-        regime = str(kernels[0].get("regime") or "")
+        top_kernel = kernels[0]
+        name = KERNEL_WORD_BOUNDARY.sub("_", str(top_kernel.get("name") or ""))
+        if COLLECTIVE_KERNEL_RE.search(name):
+            return "fabric-and-multi-rank"
+        regime = str(top_kernel.get("regime") or "")
         if regime == "BW_BOUND":
             return "one-stream-lanes"
         if regime in ("LAUNCH_BOUND", "UNDERUTILIZED", "COMPUTE_BOUND"):
