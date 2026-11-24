@@ -14,18 +14,18 @@ Hermes installs from this fork through a tap. Add the tap once, then install any
 
 ```bash
 hermes skills tap add MaverickKB/skills
-hermes skills install MaverickKB/skills/skills/prove-it
+hermes skills install MaverickKB/skills/skills/repo-map
 ```
 
-Replace `prove-it` with any folder name under `skills/`. The direct identifier also works without adding the tap. Installed skills land in the active profile's skills directory: `~/.hermes/skills/` for the default profile, or `~/.hermes/profiles/<profile>/skills/` for a named profile.
+Replace `repo-map` with any folder name under `skills/`. The direct identifier also works without adding the tap. Installed skills land in the active profile's skills directory: `~/.hermes/skills/` for the default profile, or `~/.hermes/profiles/<profile>/skills/` for a named profile.
 
-`mythos-mode` is the exception. Hermes' skills guard rates it dangerous because `scripts/gate.py` contains the destructive-command patterns the gate detects, and the hub refuses a dangerous verdict even with `--force`. Copy that skill into the profile instead:
+Skills rated caution by the scanner (break-it, breakthrough-architect, diagnosing-bugs, distill-foundry, handover, prove-it, ship-check, slopchop, vram-alchemist) install with `--force`.
+
+`mythos-mode` is rated dangerous because `scripts/gate.py` contains the destructive-command patterns the gate detects, and the hub refuses a dangerous verdict even with `--force`. Copy that skill into the profile instead:
 
 ```bash
 cp -R skills/mythos-mode ~/.hermes/profiles/<profile>/skills/
 ```
-
-Every other skill in this fork scans as safe or caution, which the hub installs.
 
 For a manual install of any skill, copy the skill folder containing `SKILL.md` into the profile skills directory. Hermes scans recursively, so a category folder is allowed, but the tap installer expects the flat `skills/<name>/` layout this fork uses.
 

@@ -19,13 +19,13 @@ Fork: https://github.com/MaverickKB/skills
 
 ```bash
 hermes skills tap add MaverickKB/skills
-hermes skills install MaverickKB/skills/skills/prove-it
+hermes skills install MaverickKB/skills/skills/repo-map
 ```
 
 Direct install without a tap:
 
 ```bash
-hermes skills install MaverickKB/skills/skills/prove-it
+hermes skills install MaverickKB/skills/skills/repo-map
 ```
 
 ### Hub scan
@@ -35,7 +35,7 @@ hermes skills install MaverickKB/skills/skills/prove-it
 | Verdict | Skills | Hub install |
 | --- | --- | --- |
 | safe | most of the collection | yes |
-| caution | break-it, breakthrough-architect, diagnosing-bugs, distill-foundry, handover, prove-it, ship-check, slopchop, vram-alchemist | yes |
+| caution | break-it, breakthrough-architect, diagnosing-bugs, distill-foundry, handover, prove-it, ship-check, slopchop, vram-alchemist | yes, with `--force` |
 | dangerous | mythos-mode | no; copy manually |
 
 Install `mythos-mode` by copying its folder into the profile skills directory:
