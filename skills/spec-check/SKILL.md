@@ -3,6 +3,9 @@ name: spec-check
 description: Sharpens a feature idea, RFC, ADR or engineering plan into a falsifiable specification before code is written, and lints spec files for vague requirements, missing failure or rollback paths, broken repository paths and untraced requirement IDs. Ships a stdlib spec linter (`spec_lint.py`). Use before starting a nontrivial feature, when reviewing an RFC or design doc, when requirements sound loose or unmeasurable, or when verifying that every requirement in a spec maps to code and tests.
 metadata:
   version: "1.0.0"
+  hermes:
+    tags: [requirements, acceptance, testing, design]
+    related_skills: [prove-it, mythos-mode]
 ---
 
 # Spec check

@@ -6,7 +6,7 @@ Fix broken Jinja templates, leaked tool calls, busted KV prefix caches and slow 
 
 ## When to use it
 
-You are wiring a local model (Qwen, DeepSeek, GLM, Devstral, Llama, Gemma) into Claude Code, OpenCode, Cline, Aider, Codex or OMP and want reliable tool calling, hot prefix caches and fast edits.
+You are wiring a local model (Qwen, DeepSeek, GLM, Devstral, Llama, Gemma) into Claude Code, Hermes Agent, OpenCode, Cline, Aider, Codex or OMP and want reliable tool calling, hot prefix caches and fast edits.
 
 ## Try it
 
@@ -20,4 +20,4 @@ Use the [local coding server auditor](scripts/coder_audit.py) for GGUF/Jinja tem
 
 ## Pair it with
 
-[Quant autopsy](../tensorfold/quant-autopsy/README.md) · [VRAM alchemist](../tensorfold/vram-alchemist/README.md) · [One-stream lanes](../tensorfold/one-stream-lanes/README.md) · [Output parity](../tensorfold/output-parity/README.md)
+[Quant autopsy](../quant-autopsy/README.md) · [VRAM alchemist](../vram-alchemist/README.md) · [One-stream lanes](../one-stream-lanes/README.md) · [Output parity](../output-parity/README.md)

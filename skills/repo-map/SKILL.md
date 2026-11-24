@@ -3,6 +3,9 @@ name: repo-map
 description: Builds a compact, token-budgeted architecture map of an unfamiliar codebase in one pass, extracting languages, build and test commands from manifests and CI, directory layout, most-imported hub files and top exported symbols with line numbers. Ships a stdlib cartographer (`repo_map.py`). Use when entering a new or large repository, onboarding to an unfamiliar codebase, planning edits across many directories, or orienting cheaply without burning context on blind searches.
 metadata:
   version: "1.0.0"
+  hermes:
+    tags: [orientation, codebase, architecture, context]
+    related_skills: [blast-radius, spec-check]
 ---
 
 # Repo map
@@ -26,7 +29,7 @@ python3 scripts/repo_map.py --repo . --json map.json
 ## Orientation loop
 
 1. **Run `repo_map.py` first** with a token budget sized to your task (`1200` for small tasks, `2500` for wide architecture work).
-2. **Read repository rules next** (`README.md`, `AGENTS.md`, `CLAUDE.md`, `CONTRIBUTING.md`) if present.
+2. **Read repository rules next** (`README.md`, `AGENTS.md`, `SOUL.md`, `CONTRIBUTING.md`) if present.
 3. **Open only the hub files and target modules** the map surfaced, reading the exact line ranges shown.
 4. **Stop orienting as soon as you can name the files to change and the check command to run.** For impact before editing a shared symbol, hand off to `blast-radius`.
 

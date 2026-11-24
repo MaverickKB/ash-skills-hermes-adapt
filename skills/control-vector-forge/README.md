@@ -20,4 +20,4 @@ Use the [control vector workbench](scripts/cvector_forge.py) with built-in [cont
 
 ## Pair it with
 
-[Mythos Mode](../mythos-mode/README.md) · [Slopchop](../slopchop/README.md) · [Quant autopsy](../tensorfold/quant-autopsy/README.md) · [Local coder overclock](../local-coder-overclock/README.md)
+[Mythos Mode](../mythos-mode/README.md) · [Slopchop](../slopchop/README.md) · [Quant autopsy](../quant-autopsy/README.md) · [Local coder overclock](../local-coder-overclock/README.md)

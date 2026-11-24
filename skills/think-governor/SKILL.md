@@ -3,6 +3,9 @@ name: think-governor
 description: Profiles local reasoning models on a seeded 4-tier calibration ladder (`trivial`, `medium`, `hard`, `loop_trap`) to kill overthinking loops, eliminate empty-answer thinking truncations, and solve Pareto-optimal `--reasoning-effort`, `--thinking-budget`, `--thinking-reserve` and `--loop-guard` policies. Ships a stdlib ladder generator, live arm profiler, offline trace loop scanner and policy tuner (`think_governor.py`). Use when a local thinking model burns thousands of tokens on easy tasks, loops in `<think>`, returns blank replies on `max_tokens`, or needs calibrated reasoning budgets.
 metadata:
   version: "1.0.0"
+  hermes:
+    tags: [local-models, reasoning, budgets, loops]
+    related_skills: [local-coder-overclock, quant-autopsy, serving-concurrency]
 ---
 
 # Think governor

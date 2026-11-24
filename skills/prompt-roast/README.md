@@ -11,7 +11,7 @@ Install this if you want your agent to call you out when your brief leaves the g
 ## Install
 
 ```bash
-npx skills add ashhart/skills --skill prompt-roast
+hermes skills install MaverickKB/skills/skills/prompt-roast
 ```
 
 ## Try it

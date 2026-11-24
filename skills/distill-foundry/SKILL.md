@@ -4,6 +4,9 @@ description: Builds execution-verified, zero-slop synthetic SFT and DPO distilla
 compatibility: Python 3.9+ for the CLI. Python tests require a local Docker daemon running Linux containers and the official Python 3.12 slim image.
 metadata:
   version: "1.0.0"
+  hermes:
+    tags: [training, distillation, sft, dpo, datasets]
+    related_skills: [slopchop, drafter-forge, quant-autopsy]
 ---
 
 # Distill foundry

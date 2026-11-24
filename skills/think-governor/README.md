@@ -20,4 +20,4 @@ Use the [reasoning budget governor](scripts/think_governor.py) for seeded 4-tier
 
 ## Pair it with
 
-[Quant autopsy](../tensorfold/quant-autopsy/README.md) · [Local coder overclock](../local-coder-overclock/README.md) · [Serving concurrency](../tensorfold/serving-concurrency/README.md)
+[Quant autopsy](../quant-autopsy/README.md) · [Local coder overclock](../local-coder-overclock/README.md) · [Serving concurrency](../serving-concurrency/README.md)

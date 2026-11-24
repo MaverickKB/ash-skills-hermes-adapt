@@ -1,0 +1,70 @@
+{
+  "$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+  "groupings": [
+    {
+      "title": "Verification and review",
+      "skills": [
+        "mythos-mode",
+        "prove-it",
+        "break-it",
+        "ship-check",
+        "fair-bench",
+        "red-team",
+        "deepfield"
+      ]
+    },
+    {
+      "title": "Planning, building, and debugging",
+      "skills": [
+        "research-then-build",
+        "repo-map",
+        "spec-check",
+        "blast-radius",
+        "diagnosing-bugs",
+        "think-like-ash",
+        "migrate-safe"
+      ]
+    },
+    {
+      "title": "TensorFold and inference",
+      "skills": [
+        "breakthrough-architect",
+        "tensorfold-speed-hunt",
+        "fabric-and-multi-rank",
+        "critical-path-xray",
+        "sass-and-air-diff",
+        "optimization-ledger",
+        "graph-and-dispatch-surgeon",
+        "model-bringup",
+        "kernel-contract",
+        "one-stream-lanes",
+        "output-parity",
+        "prefill-and-kv",
+        "serving-concurrency",
+        "speedup-referee",
+        "vram-alchemist",
+        "quant-autopsy",
+        "drafter-forge",
+        "moe-xray",
+        "local-coder-overclock",
+        "think-governor",
+        "control-vector-forge",
+        "distill-foundry"
+      ]
+    },
+    {
+      "title": "Prompts, writing, and handover",
+      "skills": [
+        "prompt-roast",
+        "handover",
+        "slopchop"
+      ]
+    },
+    {
+      "title": "Skill maintainer",
+      "skills": [
+        "skill-check"
+      ]
+    }
+  ]
+}

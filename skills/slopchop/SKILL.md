@@ -3,6 +3,9 @@ name: slopchop
 description: Cuts machine-sounding writing out of prose and leaves text that says something specific in a plain voice. Finds the patterns that mark text as generated, such as filler, stock vocabulary, stock sentence shapes, chatbot openers and closers, and formatting habits, and rewrites them. Ships a scanner for the patterns a program can find. Use on any prose written or edited for a human reader, including replies, documentation, READMEs, commit messages, pull request descriptions, posts and emails, and whenever a draft reads as generic or machine-made.
 metadata:
   version: "1.0.0"
+  hermes:
+    tags: [writing, editing, voice, style]
+    related_skills: [handover, spec-check]
 ---
 
 # Slopchop

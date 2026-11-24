@@ -8,13 +8,11 @@ Deepfield is a set of agent instructions, not a standalone ingestion server or a
 
 ## Install
 
-From your project, use the Skills CLI with Node.js 22.20 or later:
-
 ```bash
-npx skills add ashhart/skills --skill deepfield
+hermes skills install MaverickKB/skills/skills/deepfield
 ```
 
-For a manual install, copy the `deepfield` folder containing `SKILL.md` into your agent's skills directory.
+For a manual install, copy the `deepfield` folder containing `SKILL.md` into `~/.hermes/skills/` or the active profile's skills directory.
 
 ## Use it for
 

@@ -1,8 +1,11 @@
 ---
 name: local-coder-overclock
-description: Audits and fixes local LLM servers behind agentic coding harnesses (Claude Code, OpenCode, Cline, Roo, Aider, Codex, OMP). Lints Jinja, tokenizer_config.json and binary GGUF chat templates for tool-drop and cache-busting bugs, runs live single/parallel/multi-turn tool-call probes, measures KV prefix-cache hit rates with a deliberate bust control, and prescribes model-family parser, sampling and code-edit speculative flags. Use when a local coding model leaks raw tool XML, fails parallel tool calls, loops on edits, re-prefills slowly every turn, or needs tuning for an agentic coding setup.
+description: Audits and fixes local LLM servers behind agentic coding harnesses (Claude Code, Hermes Agent, OpenCode, Cline, Roo, Aider, Codex, OMP). Lints Jinja, tokenizer_config.json and binary GGUF chat templates for tool-drop and cache-busting bugs, runs live single/parallel/multi-turn tool-call probes, measures KV prefix-cache hit rates with a deliberate bust control, and prescribes model-family parser, sampling and code-edit speculative flags. Use when a local coding model leaks raw tool XML, fails parallel tool calls, loops on edits, re-prefills slowly every turn, or needs tuning for an agentic coding setup.
 metadata:
   version: "1.0.0"
+  hermes:
+    tags: [local-models, inference, tool-calling, kv-cache, harnesses]
+    related_skills: [quant-autopsy, output-parity, one-stream-lanes]
 ---
 
 # Local coder overclock

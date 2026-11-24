@@ -3,6 +3,9 @@ name: ship-check
 description: Runs a pre-merge pull-request audit over a git diff to decide SHIP or HOLD before a human reviewer sees it. Ships a stdlib diff auditor (`diff_audit.py`) that catches leaked secrets, hardcoded home paths, conflict markers, debug leftovers, oversized file growth, and Python signature changes with untouched external callers. Use right before committing, opening a pull request, merging a branch, or whenever asked if a branch or diff is ready to ship.
 metadata:
   version: "1.0.0"
+  hermes:
+    tags: [verification, git, staged-changes, release]
+    related_skills: [blast-radius, prove-it]
 ---
 
 # Ship check

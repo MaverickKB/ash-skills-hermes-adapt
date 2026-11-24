@@ -1,6 +1,10 @@
 ---
 name: red-team
 description: Runs authorized security testing with an enforceable scope and a human in control. Validates a written engagement scope file, checks every target and technique against it before any active step, keeps a tamper-evident log, and requires the operator's approval for anything that changes a target or touches data. Use for authorized penetration tests, red team exercises with a written scope, capture-the-flag and lab targets, security reviews of systems or hardware the operator owns, and vendor programs with published rules. Do not use when there is no written authorization or when the target is outside the scope file.
+metadata:
+  hermes:
+    tags: [security, review, evidence, hash-chain]
+    related_skills: [mythos-mode, deepfield]
 ---
 
 # Red team

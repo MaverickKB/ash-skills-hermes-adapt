@@ -3,6 +3,9 @@ name: break-it
 description: Attacks a piece of work to find where it fails before anyone relies on it. Ships diff-scoped AST mutation testing, an adversarial CLI/directory fuzzer, and a bias-free fresh-session brief builder. Works on a code change, pull request, script, plan, design, document, instructions, or number someone is about to quote. Use when the user says "break it", "red-team this", "poke holes in this", "what could go wrong", "stress test this" or "tear this apart", when they ask for an adversarial review, and before shipping anything hard to undo.
 metadata:
   version: "2.0.0"
+  hermes:
+    tags: [verification, testing, mutation, adversarial]
+    related_skills: [prove-it, diagnosing-bugs]
 ---
 
 # Break it

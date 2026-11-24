@@ -24,4 +24,4 @@ Use the [distillation verification foundry](scripts/foundry.py) with [example mu
 
 ## Pair it with
 
-[Quant autopsy](../tensorfold/quant-autopsy/README.md) · [Slopchop](../slopchop/README.md) · [VRAM alchemist](../tensorfold/vram-alchemist/README.md) · [Drafter forge](../tensorfold/drafter-forge/README.md)
+[Quant autopsy](../quant-autopsy/README.md) · [Slopchop](../slopchop/README.md) · [VRAM alchemist](../vram-alchemist/README.md) · [Drafter forge](../drafter-forge/README.md)

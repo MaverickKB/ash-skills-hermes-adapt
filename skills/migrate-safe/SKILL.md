@@ -3,6 +3,9 @@ name: migrate-safe
 description: Reviews and tests database schema and data migrations for destructive hazards, write-blocking locks, idempotency and clean rollbacks before they touch production. Ships a stdlib SQL linter and live SQLite round-trip harness (`migration_check.py`). Use when writing, reviewing or running SQL migrations, altering tables, backfilling rows, adding indexes on live databases, or planning a schema rollout and rollback.
 metadata:
   version: "1.0.0"
+  hermes:
+    tags: [database, sqlite, migration, schema]
+    related_skills: [ship-check, spec-check]
 ---
 
 # Migrate safe

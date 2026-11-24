@@ -3,6 +3,9 @@ name: think-like-ash
 description: Diagnoses a fault the way a fast human does, by fanning out a web of candidate causes across every layer, jumping to the middle of the stack, converging by pruning, sweeping the tiny details, taking a second pass, then generating creative resolutions. Ships a stdlib fault-web tracker (`think_like_ash.py`) that enforces layer coverage, tracks convergence, and prints the detail and resolution checklists. Use when a fault has no obvious cause, when a linear checklist keeps missing it, when the symptom is misleading, or when you want a non-linear, detail-obsessed diagnosis.
 metadata:
   version: "1.0.0"
+  hermes:
+    tags: [debugging, hypothesis, systems, root-cause]
+    related_skills: [break-it, diagnosing-bugs]
 ---
 
 # Think like Ash

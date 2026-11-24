@@ -2,6 +2,10 @@
 name: diagnosing-bugs
 description: Finds the cause of a bug or performance regression that survived a first look. Follows a fixed method that rules out the dull causes, reproduces the failure on demand, shrinks the case, halves the search space, tests rival explanations, then fixes the cause and proves the fix. Use when a failure has no obvious cause, a test is flaky, a first fix did not hold, behaviour differs between machines or versions, or something became slower. Not needed for an obvious one-line fix. Includes scripts that measure a failure rate and shrink a failing input file.
 compatibility: The bundled scripts need Python 3.9 or later and use only the standard library. Bisecting by commit needs git.
+metadata:
+  hermes:
+    tags: [debugging, reproduction, bisect, regression]
+    related_skills: [prove-it, handover]
 ---
 
 # Diagnosing bugs

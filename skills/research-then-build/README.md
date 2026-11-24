@@ -11,7 +11,7 @@ You're picking a stack, adding a major integration, or making an upgrade where t
 ## Install
 
 ```bash
-npx skills add ashhart/skills --skill research-then-build
+hermes skills install MaverickKB/skills/skills/research-then-build
 ```
 
 ## Try it

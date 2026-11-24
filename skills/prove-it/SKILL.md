@@ -3,6 +3,9 @@ name: prove-it
 description: Makes an agent prove that work it called done actually works, using evidence gathered now and a check that could have failed. Ships stdlib scripts that verify git diffs against base in an isolated worktree (for fixes and refactors) and run differential output checks with automatic input shrinking. Use when the user says "prove it", "are you sure", "show me it works", "did you actually test that", or doubts a claim of done, fixed, tested or passing. Also use before reporting work as finished when other people will build on it.
 metadata:
   version: "2.0.0"
+  hermes:
+    tags: [verification, testing, regression, baseline]
+    related_skills: [break-it, ship-check]
 ---
 
 # Prove it

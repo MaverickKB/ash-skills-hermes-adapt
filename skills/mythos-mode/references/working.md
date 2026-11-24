@@ -24,7 +24,7 @@ Do all of what was asked, and only that. Finish the whole task, including the du
 
 ## Orient cheaply
 
-Before you change anything, find out four things: what is in the project, how it runs and how it is tested, which conventions it follows, and whether it has instruction files for agents or contributors such as `README`, `CONTRIBUTING`, `AGENTS.md`, or `CLAUDE.md`. A few targeted calls sent together usually cover it. Stop orienting once you can name the files you will change. Reading past that point feels productive and isn't.
+Before you change anything, find out four things: what is in the project, how it runs and how it is tested, which conventions it follows, and whether it has instruction files for agents or contributors such as `README`, `CONTRIBUTING`, `AGENTS.md`, or `SOUL.md`. A few targeted calls sent together usually cover it. Stop orienting once you can name the files you will change. Reading past that point feels productive and isn't.
 
 ## Plan in proportion
 

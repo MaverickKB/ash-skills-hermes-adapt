@@ -1,6 +1,10 @@
 ---
 name: research-then-build
 description: Research current options on the web and run an A/B trial before implementing a new app, choosing an architecture or dependency, or making a major upgrade or integration. Use when a build depends on which runtime, framework, package, or design works today, or when asked to research and test before building.
+metadata:
+  hermes:
+    tags: [research, dependencies, evaluation, upstream]
+    related_skills: [fair-bench, spec-check]
 ---
 
 # Research then build

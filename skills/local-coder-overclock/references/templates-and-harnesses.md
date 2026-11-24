@@ -63,5 +63,6 @@ Code edits repeat large spans of existing file content, identifiers, imports and
 ## 6. Harness-specific settings
 
 - **Claude Code / OpenCode / Cline / Roo / Codex / OMP:** Pin the client context cap below the server's per-slot `-c / -np` limit so the server never silently truncates the middle of the conversation or evicts the system prompt.
+- **Hermes Agent:** Set `model.provider: custom` with `model.base_url` pointing at the server's `/v1`, and set `model.context_length` to the server's per-slot window. Pin `delegation` and the auxiliary tasks (compression, session search, titling) to the same endpoint or a separate small model so a background call does not evict the coding slot. Keep the enabled toolset list fixed across turns: changing toolsets mid-session reorders tool schemas and busts the prefix cache.
 - **Diff format over full-file rewrites:** Prefer targeted search/replace or unified-diff edit tools on local models under 70B; full-file rewrites quadruple output tokens and amplify repetition errors.
 - **Loop breaker:** If a local model fails the same test or tool call twice in a row, feed it the exact failing diff and stderr in a fresh concise turn (or escalate that single step to a stronger model) instead of letting it burn 40K tokens repeating the same edit.

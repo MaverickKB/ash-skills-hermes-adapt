@@ -3,6 +3,9 @@ name: deepfield
 description: Reviews confidential agreements and linked materials entirely on verified local infrastructure, accounts for every page and cross-reference, and answers with pinpoint evidence instead of guesses. Use for local analysis of NDAs, MSAs, DPAs, leases, policies, due-diligence records, contract comparisons, obligations, risks, amendments, missing attachments, and questions where unsupported answers are unacceptable.
 metadata:
   version: "2.0.0"
+  hermes:
+    tags: [documents, local-only, evidence, contracts, confidentiality]
+    related_skills: [fair-bench]
 ---
 
 # Deepfield

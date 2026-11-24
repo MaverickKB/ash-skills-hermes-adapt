@@ -3,6 +3,9 @@ name: handover
 description: Writes a handover note that a later session can trust, and checks an old note against the repository before anyone relies on it. The note keeps what was verified apart from what was not. A bundled script rechecks the note's references (files, commits, branches, working tree state) and reports which are stale, because handover notes go stale. Use when a session is ending, when context is getting long, when work is passing to another person or agent, or when starting from someone's handover note.
 metadata:
   version: "1.0.0"
+  hermes:
+    tags: [continuity, handoff, verification, stale-references]
+    related_skills: [diagnosing-bugs, prove-it]
 ---
 
 # Handover

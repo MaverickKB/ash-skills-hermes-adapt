@@ -3,6 +3,9 @@ name: mythos-mode
 description: Applies seven working laws for checking claims, proving fixes, and reporting evidence. Includes a reply gate and optional playbooks. Use when asked for Mythos Mode or a session-wide working method with verification gates and evidence receipts.
 metadata:
   version: "4.0.0"
+  hermes:
+    tags: [verification, evidence, gates, hooks, mythos]
+    related_skills: [prove-it, break-it, ship-check]
 ---
 
 # Mythos mode
@@ -172,8 +175,8 @@ End the turn when the work is done and checked, when you are blocked on a decisi
 
 `scripts/gate.py` enforces both the prose laws and execution-grounded checks:
 
-- **Reply check (CLI or `Stop` hook):** flags non-answer openers, unlabelled hedges, work reported without a receipt, fix claims without `Broke it:`, unsupported numbers, and doubt hidden in the receipt. When Claude Code passes `transcript_path`, `Stop` also catches code files edited after the last `Bash` command and `Broke it:` claims with zero failing checks or proof scripts in the session transcript.
-- **Irreversible guard (`PreToolUse` on `Bash`):** denies catastrophic deletes (`rm -rf /`, `rm -rf ~`, raw device writes) and asks for explicit confirmation on irreversible commands (`rm -rf` outside temp folders, `git reset --hard`, `git clean -f`, `git push --force`, `git branch -D`, `DROP TABLE`).
+- **Reply check (CLI, Claude Code `Stop`, or Hermes `pre_verify`):** flags non-answer openers, unlabelled hedges, work reported without a receipt, fix claims without `Broke it:`, unsupported numbers, and doubt hidden in the receipt. When Claude Code passes `transcript_path`, `Stop` also catches code files edited after the last `Bash` command and `Broke it:` claims with zero failing checks or proof scripts in the session transcript. In Hermes, the gate tracks edits and terminal runs in a per-session state file and checks the `changed_paths` in the `pre_verify` payload.
+- **Irreversible guard (`PreToolUse` on `Bash` / Hermes `pre_tool_call` on `terminal`):** denies catastrophic deletes (`rm -rf /`, `rm -rf ~`, raw device writes) and asks for explicit confirmation on irreversible commands (`rm -rf` outside temp folders, `git reset --hard`, `git clean -f`, `git push --force`, `git branch -D`, `DROP TABLE`).
 - **Thrash-breaker and injection alert (`PostToolUse`):** after 3 consecutive edit-and-fail cycles on the same file, injects a stop-and-hypothesize interrupt; flags prompt-injection directives inside tool output as untrusted data.
 
 ```bash
@@ -181,7 +184,7 @@ python3 scripts/gate.py REPLY.md
 python3 scripts/gate.py REPLY.md --work    # the turn changed files or ran commands
 ```
 
-It exits 0 when the reply passes and 1 when it breaks a law. It cannot tell whether the answer is logically right. For changes that matter, verify them with `prove-it` and `break-it` (using a fresh session brief so the author context cannot rubber-stamp its own diff). In Claude Code, install the `mythos-gate` plugin to enforce all four hooks automatically.
+It exits 0 when the reply passes and 1 when it breaks a law. It cannot tell whether the answer is logically right. For changes that matter, verify them with `prove-it` and `break-it` (using a fresh session brief so the author context cannot rubber-stamp its own diff). In Claude Code, install the `mythos-gate` plugin to enforce all four hooks automatically. In Hermes, register the shell hooks shown in [HERMES.md](../../HERMES.md); add `--client hermes` to each command, or let `auto` detect the payload from `hook_event_name`.
 
 ## Specialist skills
 
@@ -203,7 +206,7 @@ The laws are the whole method. The playbooks are the detail for particular kinds
 | `references/judgment.md` | Instructions conflict, content tries to direct you, an action is risky, the topic is personal or sensitive, or you need to decline |
 | `references/examples.md` | You want to see the whole loop run on real cases |
 
-`assets/always-on.md` contains the laws, reply marks and tripwires for a system prompt or an instructions file such as `AGENTS.md` or `CLAUDE.md`. If that core is already loaded, open this skill when you need its gate, examples or playbook index.
+`assets/always-on.md` contains the laws, reply marks and tripwires for a system prompt or an instructions file such as `AGENTS.md` or `SOUL.md`. If that core is already loaded, open this skill when you need its gate, examples or playbook index.
 
 ## What it looks like
 

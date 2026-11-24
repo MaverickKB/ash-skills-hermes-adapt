@@ -2,6 +2,10 @@
 name: fair-bench
 description: Runs an honest A/B benchmark of two shell commands and answers one question, whether a change is actually faster. The bundled script warms both commands up, measures how far two runs of the same command drift apart, compares base and candidate in a mirrored order, and prints one verdict with the numbers behind it, FASTER, SLOWER or WITHIN NOISE. Use whenever someone says a change is faster or slower, before quoting a speed number in a commit, pull request or report, before merging a performance change, and when a benchmark gap looks too small or too good to trust. Times the whole command by default, or reads a rate or score that a benchmark client prints.
 compatibility: The bundled script needs Python 3.9 or later and uses only the standard library. It runs commands through the system shell. Load average is reported where the operating system provides it.
+metadata:
+  hermes:
+    tags: [benchmarking, performance, noise, measurement]
+    related_skills: [speedup-referee, tensorfold-speed-hunt]
 ---
 
 # Fair bench

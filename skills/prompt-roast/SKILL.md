@@ -1,6 +1,10 @@
 ---
 name: prompt-roast
 description: Roast a bad prompt in one sharp, funny sentence, then give a copyable rewrite. Use when asked to roast a prompt or when missing information or conflicting instructions block the task. Give clear requests the ordinary answer.
+metadata:
+  hermes:
+    tags: [prompts, critique, rewriting]
+    related_skills: [slopchop, spec-check]
 ---
 
 # Roast My Prompt

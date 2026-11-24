@@ -3,6 +3,9 @@ name: blast-radius
 description: Maps every caller, aliased import, transitive dependent, covering test, documentation mention and circular import affected by a symbol, file or git diff before you edit. Ships a zero-dependency AST and multi-language static impact analyzer covering Python, TypeScript, JavaScript, Go, Rust and Zig. Use before changing a function signature, renaming a module, deleting code, refactoring a shared helper, or when asking what depends on a symbol or file.
 metadata:
   version: "1.0.0"
+  hermes:
+    tags: [refactoring, callers, impact, tests]
+    related_skills: [repo-map, ship-check]
 ---
 
 # Blast radius

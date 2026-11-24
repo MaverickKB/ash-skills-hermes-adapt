@@ -3,6 +3,9 @@ name: skill-check
 description: Reviews, tests and packages agent skills before they are shared. Lints every skill folder for format faults, missing files and private data, flags skills that claim the same requests, builds a zip and a single-file copy of each skill, and runs trap cases against any OpenAI-compatible model with and without the skill to show whether it changes behavior. Use when writing, reviewing, importing or publishing a skill or a SKILL.md, when asked whether a skill is any good or actually works, and before installing a skill someone else wrote.
 metadata:
   version: "1.0.0"
+  hermes:
+    tags: [skills, validation, packaging, evaluation]
+    related_skills: [slopchop, spec-check]
 ---
 
 # Skill check

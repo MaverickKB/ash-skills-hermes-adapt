@@ -3,6 +3,9 @@ name: control-vector-forge
 description: Builds, audits and gates native `llama.cpp` GGUF control vectors to steer local model behavior at inference time without fine-tuning or spending prompt tokens. Ships balanced contrastive presets (including `mythos-engineering`, `slopchop`, `anti-sycophancy`, `concise-coder` and `deep-reasoning`), a dataset bias/leakage linter, layer-band planners, a binary `.gguf` control-vector health inspector and a perplexity + task-retention sweep gate (`cvector_forge.py`). Use when creating GGUF control vectors, steering local models to follow engineering discipline or kill AI slop, auditing contrastive datasets, or tuning `--control-vector-scaled` ranges safely.
 metadata:
   version: "1.0.0"
+  hermes:
+    tags: [local-models, steering, gguf, control-vectors]
+    related_skills: [slopchop, mythos-mode, quant-autopsy]
 ---
 
 # Control vector forge
