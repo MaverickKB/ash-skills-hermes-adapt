@@ -184,7 +184,7 @@ python3 scripts/gate.py REPLY.md
 python3 scripts/gate.py REPLY.md --work    # the turn changed files or ran commands
 ```
 
-It exits 0 when the reply passes and 1 when it breaks a law. It cannot tell whether the answer is logically right. For changes that matter, verify them with `prove-it` and `break-it` (using a fresh session brief so the author context cannot rubber-stamp its own diff). In Claude Code, install the `mythos-gate` plugin to enforce all four hooks automatically. In Hermes, register the shell hooks shown in [HERMES.md](../../HERMES.md); add `--client hermes` to each command, or let `auto` detect the payload from `hook_event_name`.
+It exits 0 when the reply passes and 1 when it breaks a law. It cannot tell whether the answer is logically right. For changes that matter, verify them with `prove-it` and `break-it` (using a fresh session brief so the author context cannot rubber-stamp its own diff). In Claude Code, install the `mythos-gate` plugin to enforce all four hooks automatically. In Hermes, wire the shell hooks using the config and verification steps in [references/hermes-hooks.md](references/hermes-hooks.md); add `--client hermes` to each command, or let `auto` detect the payload from `hook_event_name`.
 
 ## Specialist skills
 
