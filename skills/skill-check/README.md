@@ -27,7 +27,7 @@ python3 skills/skill-check/scripts/build.py
 python3 skills/skill-check/scripts/build.py --check
 ```
 
-The validator and packager reject links that resolve outside the skill. Run the repository's CLI regression tests with `python3 -B -m unittest discover -s tests`.
+The validator and packager reject links that resolve outside the skill.
 
 The validator's overlap notes compare description wording. Read the triggers together to catch skills that claim the same task in different words.
 

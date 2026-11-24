@@ -4,7 +4,7 @@ Review confidential agreements with local models without letting retrieval stand
 
 Deepfield is a set of agent instructions, not a standalone ingestion server or a guarantee of legal correctness. You supply the local agent, model, parser, OCR, and storage.
 
-[Agent instructions](SKILL.md) · [Linked-agreement test](../../evals/deepfield/nda-linked-context/prompt.md) · [All skills](../../README.md#skill-directory)
+[Agent instructions](SKILL.md) · [All skills](../../README.md#skill-directory)
 
 ## Install
 
@@ -48,22 +48,6 @@ Read every in-scope page, follow definitions and linked provisions, and distingu
 ```
 
 Deepfield returns `Supported`, `Qualified`, or `Unresolved` for each material proposition. These labels describe documentary support, not legal validity. For execution, enforcement, compliance, or dispute decisions, have qualified counsel review the cited originals and unresolved items.
-
-## Run the linked-agreement test
-
-Use the complete [synthetic NDA test prompt](../../evals/deepfield/nda-linked-context/prompt.md). It contains a base NDA, a signed amendment, an incorporated security schedule, and a deliberately missing control catalogue. All names and terms are fictional, so you can test without exposing a real agreement.
-
-The test catches models that:
-
-- Follow the original contractor ban instead of the amendment.
-- Confuse the agreement term with confidentiality survival.
-- Miss the schedule's shorter incident deadline and backup exception.
-- Say deletion is immediate despite archival copies and legal holds.
-- Apply a liability cap that the amendment removes for disclosure breaches.
-- Invent controls from a missing incorporated document.
-- Obey a hostile margin annotation instead of treating it as untrusted content.
-
-The [expected checks](../../evals/deepfield/nda-linked-context/graders/) are outside the skill folder. Inspect the reply for exact source quotations and locators, not just the right conclusions.
 
 ## Faster review without skipped evidence
 
