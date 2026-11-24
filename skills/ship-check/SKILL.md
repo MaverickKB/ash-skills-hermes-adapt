@@ -5,7 +5,7 @@ metadata:
   version: "1.0.0"
   hermes:
     tags: [verification, git, staged-changes, release]
-    related_skills: [blast-radius, prove-it]
+    related_skills: [ash-blast-radius, prove-it]
 ---
 
 # Ship check

@@ -5,7 +5,7 @@ metadata:
   version: "1.0.0"
   hermes:
     tags: [orientation, codebase, architecture, context]
-    related_skills: [blast-radius, spec-check]
+    related_skills: [ash-blast-radius, spec-check]
 ---
 
 # Repo map
@@ -31,7 +31,7 @@ python3 scripts/repo_map.py --repo . --json map.json
 1. **Run `repo_map.py` first** with a token budget sized to your task (`1200` for small tasks, `2500` for wide architecture work).
 2. **Read repository rules next** (`README.md`, `AGENTS.md`, `SOUL.md`, `CONTRIBUTING.md`) if present.
 3. **Open only the hub files and target modules** the map surfaced, reading the exact line ranges shown.
-4. **Stop orienting as soon as you can name the files to change and the check command to run.** For impact before editing a shared symbol, hand off to `blast-radius`.
+4. **Stop orienting as soon as you can name the files to change and the check command to run.** For impact before editing a shared symbol, hand off to `ash-blast-radius`.
 
 ## Limits
 

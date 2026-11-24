@@ -20,4 +20,4 @@ Run the [diff audit](scripts/diff_audit.py) on the staged snapshot or working tr
 
 ## Pair it with
 
-[Blast radius](../blast-radius/README.md) · [Prove it](../prove-it/README.md)
+[Ash blast radius](../ash-blast-radius/README.md) · [Prove it](../prove-it/README.md)

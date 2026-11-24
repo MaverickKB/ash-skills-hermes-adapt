@@ -19,7 +19,7 @@
         "research-then-build",
         "repo-map",
         "spec-check",
-        "blast-radius",
+        "ash-blast-radius",
         "diagnosing-bugs",
         "think-like-ash",
         "migrate-safe"
