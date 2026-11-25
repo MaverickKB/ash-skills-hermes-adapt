@@ -228,8 +228,8 @@ def main():
         return 1
 
     known_names = check_layout(errors)
-    if len(known_names) != 40:
-        warnings.append("expected 40 skills, found " + str(len(known_names)))
+    if len(known_names) != 41:
+        warnings.append("expected 41 skills, found " + str(len(known_names)))
 
     for skill_name in known_names:
         check_skill(skill_name, errors, warnings, known_names)

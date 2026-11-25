@@ -2,7 +2,7 @@
 
 ![A red laser traces the profile of a black basalt lion.](assets/mythos-mode.webp)
 
-I want my agent to show me the bug it reproduced, the test that caught it, and the runs behind its speedup claim. These 40 skills give you a way to ask for that work.
+I want my agent to show me the bug it reproduced, the test that caught it, and the runs behind its speedup claim. These 41 skills give you a way to ask for that work.
 
 This is Ken Bandoly's Hermes Agent fork of [ashhart/skills](https://github.com/ashhart/skills). The skill content is upstream's; the packaging is adapted for Hermes: flat skill folders a Hermes tap can discover, `metadata.hermes` tags, `skills.sh.json` groupings, and Hermes shell-hook support in the Mythos reply gate. See [HERMES.md](HERMES.md) for the adaptation notes and hook setup.
 
@@ -81,6 +81,7 @@ Hermes asks for consent the first time each `(event, command)` pair runs. `--acc
 | "Which stack should I build this on?" | [Research then build](skills/research-then-build/README.md) | Live sources, upstream code review, and a trial against your requirements. |
 | "It only fails on CI." | [Diagnosing bugs](skills/diagnosing-bugs/README.md) &rarr; [Prove it](skills/prove-it/README.md) | A reproducer and a test that catches the original failure. |
 | "This change touches a lot of callers." | [Ash blast radius](skills/ash-blast-radius/README.md) &rarr; [Ship check](skills/ship-check/README.md) | A map of what depends on your changes and a verdict on the staged snapshot. |
+| "Does this repo phone home or snoop my API keys?" | [Truffle Hunter](skills/truffle-hunter/README.md) | Full-repo telemetry, IP/domain, obfuscation and auth-file audit with a blunt clean-or-sus verdict. |
 | "Decode is faster. Can we ship it?" | [Output parity](skills/output-parity/README.md) &rarr; [Fair bench](skills/fair-bench/README.md) &rarr; [Speedup referee](skills/speedup-referee/README.md) | A parity verdict, repeat timings, and an independent review of the speedup claim. |
 | "Push TensorFold speed locally without regressions." | [Breakthrough architect](skills/breakthrough-architect/README.md) &rarr; [TensorFold speed hunt](skills/tensorfold-speed-hunt/README.md) ([Critical path X-ray](skills/critical-path-xray/README.md) &rarr; [Optimization ledger](skills/optimization-ledger/README.md) &rarr; [SASS and AIR diff](skills/sass-and-air-diff/README.md) &rarr; [Speedup referee](skills/speedup-referee/README.md)) | Stage 0 physics gaps, 10-minute kill-probes and on-silicon autotuning feeding a tamper-checked 7-gate landing loop. |
 | "Which quant fits my GPU and won't break coding agents?" | [VRAM alchemist](skills/vram-alchemist/README.md) &rarr; [Quant autopsy](skills/quant-autopsy/README.md) &rarr; [Local coder overclock](skills/local-coder-overclock/README.md) | Exact TensorFold VRAM fit and serve flags, an all-quant Pareto scorecard, and verified tool calling and prefix caching. |
@@ -99,6 +100,7 @@ Open a guide for a copyable prompt, bundled tools, and related skills.
 | [`ship-check`](skills/ship-check/README.md) | Audit staged changes and run your chosen checks. | You're about to commit or merge. |
 | [`fair-bench`](skills/fair-bench/README.md) | Compare commands against measured baseline noise. | A speedup needs more than one timing. |
 | [`red-team`](skills/red-team/README.md) | Review approved scope and verify a hash-chained evidence log. | You need a documented defensive review. |
+| [`truffle-hunter`](skills/truffle-hunter/README.md) | Scan every file and line for telemetry, phone-home endpoints, obfuscated URLs, and auth-file snooping. | You want to know if a repo phones home before giving it API keys. |
 | [`deepfield`](skills/deepfield/README.md) | Read confidential agreements locally and tie every claim to cited evidence. | You need page coverage, linked context, and explicit gaps instead of a guessed answer. |
 
 ### Planning, building, and debugging
