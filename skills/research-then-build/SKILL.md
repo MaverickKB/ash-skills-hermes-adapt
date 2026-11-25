@@ -38,7 +38,7 @@ Find a widely used project that solves the same problem. Stars can help you find
 
 After the research, pick two credible alternatives. Use the existing solution, a built-in option, or two supported configurations when the technology is fixed. If you cannot find a credible comparison, explain what evidence is missing and keep implementation pending.
 
-Run a minimal probe for each in a temporary workspace with pinned versions, the same target runtime, and identical inputs and assertions. Capture the commands, outputs, and failures. Compare contract and compatibility first. When performance decides the choice, establish run-to-run variation and repeat both variants under matched conditions. Treat a gain within the observed noise as inconclusive and keep testing before deciding. Use [fair-bench](../fair-bench/SKILL.md) if available.
+Run a minimal probe for each in a temporary workspace with pinned versions, the same target runtime, and identical inputs and assertions. Capture the commands, outputs, and failures. Compare contract and compatibility first. When performance decides the choice, establish run-to-run variation and repeat both variants under matched conditions, alternating the order of the two commands each round so warm-cache effects land on both. Treat a gain within the observed noise as inconclusive and keep testing before deciding: compare the min-to-max range of each variant, not the medians, and add rounds until the ranges stop overlapping. Use [fair-bench](../fair-bench/SKILL.md) if available.
 
 ## 4. Decide, then implement
 

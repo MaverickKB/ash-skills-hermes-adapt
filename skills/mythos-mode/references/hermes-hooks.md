@@ -52,4 +52,5 @@ hooks:
 
 - `pre_tool_call` matches `terminal` only. `execute_code` and `browser_exec` are not inspected.
 - Post-tool advice arrives on the next turn, not in the same tool result.
-- `pre_verify` is bounded by `agent.max_verify_nudges` and one-shot via `attempt`.
+- `pre_verify` is bounded by `agent.max_verify_nudges` and one-shot via `attempt`. It also fires only after a code edit, so a false "it works" claim with no edit in that turn is not gated.
+- A registration or auto-approve line in `agent.log` is not proof the gate ran. After wiring, confirm a later tool call actually invoked `gate.py`. A desktop session that was already open when the hooks were added may keep running without them until that process restarts.

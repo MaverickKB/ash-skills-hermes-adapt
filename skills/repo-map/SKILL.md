@@ -2,7 +2,7 @@
 name: repo-map
 description: Builds a compact, token-budgeted architecture map of an unfamiliar codebase in one pass, extracting languages, build and test commands from manifests and CI, directory layout, most-imported hub files and top exported symbols with line numbers. Ships a stdlib cartographer (`repo_map.py`). Use when entering a new or large repository, onboarding to an unfamiliar codebase, planning edits across many directories, or orienting cheaply without burning context on blind searches.
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   hermes:
     tags: [orientation, codebase, architecture, context]
     related_skills: [ash-blast-radius, spec-check]
@@ -19,7 +19,7 @@ python3 scripts/repo_map.py --repo . --budget-tokens 1800 --max-lines 160
 python3 scripts/repo_map.py --repo . --json map.json
 ```
 
-`scripts/repo_map.py` uses only the Python 3.9+ standard library and completes in under a second on typical repositories. It extracts:
+`scripts/repo_map.py` uses only the Python 3.9+ standard library and usually finishes in about a second on small repositories and a few seconds on larger ones; time it before quoting a number. It extracts:
 
 - language and line-count breakdown across Python, TypeScript, JavaScript, Go, Rust, Zig, Shell and SQL
 - build, lint and test commands from `package.json`, `pyproject.toml`, `Cargo.toml`, `go.mod`, `build.zig` and `.github/workflows/*.yml`

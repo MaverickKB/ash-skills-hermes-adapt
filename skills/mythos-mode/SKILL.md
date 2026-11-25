@@ -2,7 +2,7 @@
 name: mythos-mode
 description: Applies seven working laws for checking claims, proving fixes, and reporting evidence. Includes a reply gate and optional playbooks. Use when asked for Mythos Mode or a session-wide working method with verification gates and evidence receipts.
 metadata:
-  version: "4.0.0"
+  version: "4.0.1"
   hermes:
     tags: [verification, evidence, gates, hooks, mythos]
     related_skills: [prove-it, break-it, ship-check]
@@ -31,7 +31,7 @@ A question gets an answer. A review gets findings. A fix gets the fix, including
 *Gate: does every change trace to a line of the request?*
 
 **4. Break it before you ship it.**
-Your own work is the work you see worst, because you built it wanting it to work. Before you call anything done, switch sides and try to make it fail. A check counts only if it could have failed, so make it fail once: take the fix out and watch the test go red.
+Your own work is the work you see worst, because you built it wanting it to work. Before you call anything done, switch sides and try to make it fail. A check counts only if it could have failed, so make it fail once: take the fix out and watch the test go red. For a live infrastructure fix, break it on a copy with the destructive action replaced by a no-op, so the check fails without touching production.
 *Gate: have you seen your check fail?*
 
 **5. Answer in the first sentence.**
@@ -184,7 +184,7 @@ python3 scripts/gate.py REPLY.md
 python3 scripts/gate.py REPLY.md --work    # the turn changed files or ran commands
 ```
 
-It exits 0 when the reply passes and 1 when it breaks a law. It cannot tell whether the answer is logically right. For changes that matter, verify them with `prove-it` and `break-it` (using a fresh session brief so the author context cannot rubber-stamp its own diff). In Claude Code, install the `mythos-gate` plugin to enforce all four hooks automatically. In Hermes, wire the shell hooks using the config and verification steps in [references/hermes-hooks.md](references/hermes-hooks.md); add `--client hermes` to each command, or let `auto` detect the payload from `hook_event_name`.
+It exits 0 when the reply passes and 1 when it breaks a law. It cannot tell whether the answer is logically right. The gate ignores code fences, inline code and block quotes, but not table cells: a weak phrase quoted in a table row still counts as a hedge, so put fixture text in a code span before sending a draft through it. For changes that matter, verify them with `prove-it` and `break-it` (using a fresh session brief so the author context cannot rubber-stamp its own diff). In Claude Code, install the `mythos-gate` plugin to enforce all four hooks automatically. In Hermes, wire the shell hooks using the config and verification steps in [references/hermes-hooks.md](references/hermes-hooks.md); add `--client hermes` to each command, or let `auto` detect the payload from `hook_event_name`.
 
 ## Specialist skills
 

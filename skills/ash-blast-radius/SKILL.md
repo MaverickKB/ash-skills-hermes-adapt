@@ -2,7 +2,7 @@
 name: ash-blast-radius
 description: Maps every caller, aliased import, transitive dependent, covering test, documentation mention and circular import affected by a symbol, file or git diff before you edit. Ships a zero-dependency AST and multi-language static impact analyzer covering Python, TypeScript, JavaScript, Go, Rust and Zig. Use before changing a function signature, renaming a module, deleting code, refactoring a shared helper, or when asking what depends on a symbol or file.
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   hermes:
     tags: [refactoring, callers, impact, tests]
     related_skills: [repo-map, ship-check]
@@ -20,7 +20,7 @@ python3 scripts/impact.py --repo . --files pricing.py
 python3 scripts/impact.py --repo . --git-diff HEAD --fail-on-cycles
 ```
 
-`scripts/impact.py` uses only Python 3.9+ standard library modules. It reads Python ASTs to resolve aliased imports (`from pricing import discount as apply_pct`), builds a reverse import graph to find transitive dependents and circular imports, scans TypeScript/JavaScript/Go/Rust/Zig files for named imports and references, and flags Markdown and config files that mention the target.
+`scripts/impact.py` uses only Python 3.9+ standard library modules. It reads Python ASTs to resolve aliased imports (`from pricing import discount as apply_pct`), builds a reverse import graph to find transitive dependents and circular imports, scans TypeScript/JavaScript/Go/Rust/Zig files for named imports and references, and flags config files and Markdown that mention the target, counting a Markdown mention only when it sits inside backticks.
 
 ## Workflow
 
@@ -40,5 +40,5 @@ python3 scripts/impact.py --repo . --git-diff HEAD --fail-on-cycles
 ## Rules
 
 - Never rely on plain `grep` alone when changing a function's parameters or return type; check aliased imports too.
-- Do not skip doc and config mentions when a public call or CLI flag changes.
+- Do not skip doc and config mentions when a public call or CLI flag changes. The scanner only counts backticked Markdown mentions, so search prose docs yourself for a public rename.
 - Keep unrelated callers untouched unless the contract change actually requires updating them.

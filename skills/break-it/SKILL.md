@@ -2,7 +2,7 @@
 name: break-it
 description: Attacks a piece of work to find where it fails before anyone relies on it. Ships diff-scoped AST mutation testing, an adversarial CLI/directory fuzzer, and a bias-free fresh-session brief builder. Works on a code change, pull request, script, plan, design, document, instructions, or number someone is about to quote. Use when the user says "break it", "red-team this", "poke holes in this", "what could go wrong", "stress test this" or "tear this apart", when they ask for an adversarial review, and before shipping anything hard to undo.
 metadata:
-  version: "2.0.0"
+  version: "2.0.1"
   hermes:
     tags: [verification, testing, mutation, adversarial]
     related_skills: [prove-it, diagnosing-bugs]
@@ -85,11 +85,11 @@ Hammers any CLI or script (`{file}` or `{dir}`) in fresh sandboxes with empty, s
 python3 scripts/fuzz_cli.py --cmd "python3 cleanup.py {dir} --days 30"
 ```
 
-Clean nonzero error exits count as handled. Unhandled tracebacks, signals, timeouts and outside symlink modifications exit 1 with `FUZZ: BROKE IT`.
+Clean nonzero error exits count as handled. Unhandled tracebacks, signals, timeouts and outside symlink modifications exit 1 with `FUZZ: BROKE IT`. The outside-symlink canary is a single `.log` file, so a tool that follows the link but only removes another extension passes this attack; add a targeted escape check when you know the tool's pattern.
 
 ### `scripts/adversarial_brief.py`
 
-Packages only the original request, the git diff (with SHA-256), untracked files and the check command into a fresh-context review brief, stripping out the builder's explanations so a separate session or subagent can attack the change without confirmation bias.
+Packages only the original request, the git diff, untracked files and the check command into a fresh-context review brief, stripping out the builder's explanations so a separate session or subagent can attack the change without confirmation bias. Its change fingerprint is a 16-character SHA-256 over the diff plus untracked file names and contents, so it will not match `sha256sum` of the diff alone.
 
 ```bash
 python3 scripts/adversarial_brief.py --request "Fix retry on 503" --cmd "pytest" --out brief.md
