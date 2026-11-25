@@ -13,8 +13,8 @@ This is Ken Bandoly's Hermes Agent fork of [ashhart/skills](https://github.com/a
 Hermes installs from this fork through a tap. Add the tap once, then install any skill by name:
 
 ```bash
-hermes skills tap add MaverickKB/skills
-hermes skills install MaverickKB/skills/skills/repo-map
+hermes skills tap add MaverickKB/ash-skills-hermes-adapt
+hermes skills install MaverickKB/ash-skills-hermes-adapt/skills/repo-map
 ```
 
 Replace `repo-map` with any folder name under `skills/`. The direct identifier also works without adding the tap. Installed skills land in the active profile's skills directory: `~/.hermes/skills/` for the default profile, or `~/.hermes/profiles/<profile>/skills/` for a named profile.
@@ -32,7 +32,7 @@ For a manual install of any skill, copy the skill folder containing `SKILL.md` i
 Other agents can still use the Skills CLI with Node.js 22.20 or later:
 
 ```bash
-npx skills add MaverickKB/skills --skill mythos-mode
+npx skills add MaverickKB/ash-skills-hermes-adapt --skill mythos-mode
 ```
 
 ## See Mythos Mode in action
@@ -164,7 +164,7 @@ Hermes Agent is the primary target of this fork. The Skills CLI detects other su
 
 | Platform | Project path | Global path |
 | --- | --- | --- |
-| Hermes Agent (this fork) | Tap: `hermes skills tap add MaverickKB/skills` | `~/.hermes/skills/` or `~/.hermes/profiles/<profile>/skills/` |
+| Hermes Agent (this fork) | Tap: `hermes skills tap add MaverickKB/ash-skills-hermes-adapt` | `~/.hermes/skills/` or `~/.hermes/profiles/<profile>/skills/` |
 | Claude Code | `.claude/skills/` | `~/.claude/skills/` |
 | OpenAI Codex | `.agents/skills/` | `~/.agents/skills/` |
 | Gemini CLI | `.gemini/skills/` | `~/.gemini/skills/` |

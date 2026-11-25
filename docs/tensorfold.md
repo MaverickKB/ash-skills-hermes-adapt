@@ -1,6 +1,6 @@
 # TensorFold and inference
 
-TensorFold groups eighteen inference skills. Install each one by its own name, such as `hermes skills install MaverickKB/skills/skills/breakthrough-architect` or `hermes skills install MaverickKB/skills/skills/tensorfold-speed-hunt`.
+TensorFold groups eighteen inference skills. Install each one by its own name, such as `hermes skills install MaverickKB/ash-skills-hermes-adapt/skills/breakthrough-architect` or `hermes skills install MaverickKB/ash-skills-hermes-adapt/skills/tensorfold-speed-hunt`.
 
 Start with the [performance playbook](../skills/mythos-mode/references/inference-performance.md) when you need to find where a served request spends its time. It comes with Mythos Mode, so you can use it after installing that skill on its own.
 

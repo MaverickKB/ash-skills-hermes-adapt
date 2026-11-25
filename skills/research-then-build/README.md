@@ -11,7 +11,7 @@ You're picking a stack, adding a major integration, or making an upgrade where t
 ## Install
 
 ```bash
-hermes skills install MaverickKB/skills/skills/research-then-build
+hermes skills install MaverickKB/ash-skills-hermes-adapt/skills/research-then-build
 ```
 
 ## Try it

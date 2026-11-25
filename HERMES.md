@@ -2,13 +2,13 @@
 
 This fork adapts [ashhart/skills](https://github.com/ashhart/skills) for Hermes Agent. The skill content stays upstream's; the packaging, install path, and hook integration are Hermes-native.
 
-Fork: https://github.com/MaverickKB/skills
+Fork: https://github.com/MaverickKB/ash-skills-hermes-adapt
 
 ## What changed
 
 | Area | Upstream | This fork |
 | --- | --- | --- |
-| Layout | 18 TensorFold skills under `skills/tensorfold/<name>/` | All 40 skills flat under `skills/<name>/`, so a Hermes tap (one level under `skills/`) discovers every skill |
+| Layout | 18 TensorFold skills under `skills/tensorfold/<name>/` | All 41 skills flat under `skills/<name>/`, so a Hermes tap (one level under `skills/`) discovers every skill |
 | Frontmatter | `name`, `description`, `metadata.version` | Adds `metadata.hermes.tags` and `metadata.hermes.related_skills` for Hermes indexing and skill routing |
 | Grouping | README sections | `skills.sh.json` groupings, so Hermes shows category pills for the tap |
 | Install | Skills CLI (`npx skills add`) | Hermes tap and `hermes skills install` |
@@ -18,14 +18,14 @@ Fork: https://github.com/MaverickKB/skills
 ## Install
 
 ```bash
-hermes skills tap add MaverickKB/skills
-hermes skills install MaverickKB/skills/skills/repo-map
+hermes skills tap add MaverickKB/ash-skills-hermes-adapt
+hermes skills install MaverickKB/ash-skills-hermes-adapt/skills/repo-map
 ```
 
 Direct install without a tap:
 
 ```bash
-hermes skills install MaverickKB/skills/skills/repo-map
+hermes skills install MaverickKB/ash-skills-hermes-adapt/skills/repo-map
 ```
 
 ### Hub scan

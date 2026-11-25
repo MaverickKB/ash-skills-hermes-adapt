@@ -9,7 +9,7 @@ Deepfield is a set of agent instructions, not a standalone ingestion server or a
 ## Install
 
 ```bash
-hermes skills install MaverickKB/skills/skills/deepfield
+hermes skills install MaverickKB/ash-skills-hermes-adapt/skills/deepfield
 ```
 
 For a manual install, copy the `deepfield` folder containing `SKILL.md` into `~/.hermes/skills/` or the active profile's skills directory.
